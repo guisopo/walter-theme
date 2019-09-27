@@ -4,7 +4,7 @@
  *
  * @see get_object_taxonomies()
  */
-function folio_return_custom_taxonomy( $custom_taxonomy ) {
+function walter_return_custom_taxonomy( $custom_taxonomy ) {
 
   if ( ! $post = get_post() ) {
     return '';
@@ -32,7 +32,7 @@ function folio_return_custom_taxonomy( $custom_taxonomy ) {
  * @see get_previous_post_link()
  * @see get_next_post_link()
  */
-function folio_render_post_nav( $taxonomy ) {
+function walter_render_post_nav( $taxonomy ) {
 
   $previous_link = get_previous_post_link( '%link', 'Previous', TRUE, '', $taxonomy );
   $next_link = get_next_post_link( '%link', 'Next', TRUE, '', $taxonomy );
@@ -61,7 +61,7 @@ function folio_render_post_nav( $taxonomy ) {
  * @see get_terms()
  * @see get_term_link()
  */
-function folio_render_taxonmy_list( $tax_name ) {
+function walter_render_taxonmy_list( $tax_name ) {
 
   $terms_args = array(
     'taxonomy'   => $tax_name,
@@ -99,8 +99,8 @@ function folio_render_taxonmy_list( $tax_name ) {
  *
  * @see get_post_meta()
  */
-function folio_get_post_meta( $post_id ) {
-  return get_post_meta( $post_id, '_avant_folio_work_info_key', true);
+function walter_get_post_meta( $post_id ) {
+  return get_post_meta( $post_id, '_avant_walter_work_info_key', true);
 }
 
 /**
@@ -108,7 +108,7 @@ function folio_get_post_meta( $post_id ) {
  *
  * @see get_post_meta()
  */
-function folio_render_work_info( $meta ) {
+function walter_render_work_info( $meta ) {
   ?>
   <p class="post-item__data">
     <span><?php the_title(); ?></span>,&nbsp
@@ -131,7 +131,7 @@ function folio_render_work_info( $meta ) {
  *
  * @see get_post_meta()
  */
-function folio_render_gallery( $gallery_array) {
+function walter_render_gallery( $gallery_array) {
   $images_id = explode(',', $gallery_array );
 
   $figure = '<figure class="post__gallery">';

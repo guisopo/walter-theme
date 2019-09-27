@@ -2,21 +2,34 @@
 /**
  * Enqueue scripts and styles
  * 
- * @package Folio
+ * @package Walter
  */
 
-function folio_admin_scripts() {
-   
+function walter_admin_scripts() {
+  /**
+   * Main JS file
+   */
+  if ( WP_DEBUG ) {
+    wp_enqueue_script( 'site', 'http://localhost:8080/site.js', [], '1.0.0', true );
+  }
+
+  if ( ! WP_DEBUG ) {
+    wp_enqueue_script( 'walter-script', get_template_directory_uri() . '/js/build/main.bundle.js', null, null, true);
+  }
 }
 
-add_action( 'admin_enqueue_scripts','folio_admin_scripts' );
-
-function folio_load_scripts() {
+function walter_load_css() {
   /**
    * Main CSS file
    */
-   wp_enqueue_style( 'folio-style', get_template_directory_uri() . '/style.css', array(), '1.0.0', 'all');
+  if ( WP_DEBUG ) {
+  }
+
+  if ( ! WP_DEBUG ) {
+    wp_enqueue_style( 'walter-style', get_template_directory_uri() . '/css/build/main.min.css', array(), '1.0.0', 'all');
+  }
    
 }
 
-add_action( 'wp_enqueue_scripts', 'folio_load_scripts' );
+add_action( 'wp_enqueue_scripts','walter_admin_scripts' );
+add_action( 'wp_enqueue_scripts', 'walter_load_css' );

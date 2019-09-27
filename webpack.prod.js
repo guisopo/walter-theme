@@ -10,8 +10,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 module.exports = merge(common, {
   mode: "production",
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "build"),
+    filename: "./js/build/[name].bundle.js",
+    path: path.resolve(__dirname),
   },
   optimization: {
     minimizer: [

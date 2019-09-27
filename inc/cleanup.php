@@ -2,10 +2,10 @@
 /** 
  * Remove version string from js and css
  * 
- * @package Artist
+ * @package Walter
  */
 
-function artist_remove_wp_version( $src ) {
+function walter_remove_wp_version( $src ) {
   /** 
    * Remove generator with wordpress version
    */
@@ -21,5 +21,5 @@ function artist_remove_wp_version( $src ) {
 	return $src;
 }
 
-add_filter( 'script_loader_src', 'artist_remove_wp_version' );
-add_filter( 'style_loader_src', 'artist_remove_wp_version' );
+add_filter( 'script_loader_src', 'walter_remove_wp_version' );
+add_filter( 'style_loader_src', 'walter_remove_wp_version' );
