@@ -13,13 +13,22 @@ get_header();
 <main class="content">
 
   <?php 
-    // Create UL with links to the given taxonomy
-    echo folio_render_taxonmy_list( 'work_type' ); 
-  ?>
+    $works_args = array(
+      'post_type' => 'works',
+    );
 
-  <div class="image-container">
-    This will be the image container
-  </div>
+    $works = new WP_Query( $works_args );
+
+    if( $works->have_posts() ) :
+
+      while( $works->have_posts() ) : $works->the_post();
+
+        get_template_part( 'template-parts/content', 'content' );
+
+      endwhile;
+      
+    endif;
+  ?>
 
 </main>
 

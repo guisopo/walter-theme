@@ -100,7 +100,7 @@ function walter_render_taxonmy_list( $tax_name ) {
  * @see get_post_meta()
  */
 function walter_get_post_meta( $post_id ) {
-  return get_post_meta( $post_id, '_avant_walter_work_info_key', true);
+  return get_post_meta( $post_id, '_avant_folio_work_info_key', true);
 }
 
 /**
@@ -109,21 +109,35 @@ function walter_get_post_meta( $post_id ) {
  * @see get_post_meta()
  */
 function walter_render_work_info( $meta ) {
-  ?>
-  <p class="post-item__data">
-    <span><?php the_title(); ?></span>,&nbsp
-    <span><?php echo $meta['date_completed']; ?></span>
-  </p>
+  $output = '';
 
-  <p class="post-item__data">
-    <span><?php echo $meta['material']; ?></span>
-  </p>
+  if( isset( $meta['date_completed'] ) ) {
+    $output .= 
+      '<p class="post-item__data">
+        <span>'. the_title() .'</span>,&nbsp
+        <span>'. $meta['date_completed'] .'</span>
+      </p>'
+    ;
+  }
 
-  <p class="post-item__data">
-    <span><?php echo $meta['dimensions']; ?></span>
-    <span><?php echo $meta['units']; ?></span>
-  </p>
-  <?php
+  if( isset( $meta['material'] ) ) {
+    $output .=
+      '<p class="post-item__data">
+        <span>'. $meta['material'] .'</span>
+      </p>'
+    ;
+  }
+
+  if ( isset( $meta['dimensions'], $meta['units'] ) ) {
+    $output .=
+      '<p class="post-item__data">
+        <span>'. $meta['dimensions'] .'</span>
+        <span>'. $meta['units'] .'</span>
+      </p>'
+    ;
+  }
+
+  echo $output;
 }
 
 /**
