@@ -114,7 +114,7 @@ function walter_render_work_info( $meta ) {
   if( isset( $meta['date_completed'] ) ) {
     $output .= 
       '<p class="post-item__data">
-        <span>'. the_title() .'</span>,&nbsp
+        <span>'. get_the_title() .'</span>,&nbsp
         <span>'. $meta['date_completed'] .'</span>
       </p>'
     ;
