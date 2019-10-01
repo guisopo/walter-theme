@@ -12,22 +12,22 @@ get_header();
 
 <main class="content">
 
-  <?php 
-    $works_args = array(
-      'post_type' => 'works',
-    );
+  <?php
+    if( have_posts() ) :
 
-    $works = new WP_Query( $works_args );
-
-    if( $works->have_posts() ) :
-
-      while( $works->have_posts() ) : $works->the_post();
+      while( have_posts() ) : the_post();
 
         get_template_part( 'template-parts/content', 'content' );
 
       endwhile;
+
+      previous_posts_link( 'Newer Posts' );
+      next_posts_link( 'Older Posts' );
       
     endif;
+
+    wp_reset_postdata();
+
   ?>
 
 </main>

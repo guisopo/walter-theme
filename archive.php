@@ -25,6 +25,9 @@ if ( have_posts() ) :
       
     endwhile;
 
+    previous_posts_link( 'Older Posts' );
+    next_posts_link( 'Newer Posts' );
+
     ?>
   </ul><!-- .term-list -->
 <?php
