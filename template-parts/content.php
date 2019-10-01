@@ -12,12 +12,6 @@ $meta = walter_get_post_meta( get_the_ID() );
 
 <li class="post-item post-item--list">
 
-  <h2 class="post-item__title">
-    <a class="post-item__link" href=<?php echo esc_url( get_permalink() ); ?>>
-      <?php the_title(); ?>
-    </a>
-  </h2>
-
   <?php
   if (has_post_thumbnail( $post->ID ) ):
   ?>

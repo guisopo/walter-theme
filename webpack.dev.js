@@ -16,9 +16,8 @@ const configureDevServer = () => {
 
 module.exports = merge(common, {
   devServer: configureDevServer(),
-  // devtool: 'source-map',
+  devtool: 'source-map',
   mode: "development",
-  entry: [ './js/src/app.js' ],
   module: {
     rules: [{
 			test: /\.s[c|a]ss$/,

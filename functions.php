@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Folio
+ * @package Walter
  */
 
 require get_template_directory().'/inc/cleanup.php';
