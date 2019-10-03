@@ -10,13 +10,13 @@
 get_header();
 ?>
 
-<h1 class="archive-title"><?php single_term_title(); ?> </h1>
-
 <?php 
 if ( have_posts() ) :
-?>
 
-  <ul class="post-list">
+  $cpt = get_post_type( get_the_ID() );
+  ?>
+
+  <ul class="post-list <?php echo 'post-list--'.$cpt ?>">
     <?php
 
     while ( have_posts() ) : the_post();

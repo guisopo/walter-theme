@@ -10,7 +10,7 @@
 $meta = walter_get_post_meta( get_the_ID() );
 ?>
 
-<li class="post-item">
+<li class="post-item post-item--gallery">
 
   <?php
   if (has_post_thumbnail( $post->ID ) ):

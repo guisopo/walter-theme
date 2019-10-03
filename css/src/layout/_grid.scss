@@ -10,7 +10,7 @@
   margin-left: var(--column);
   display: grid;
   grid-template-columns: var(--column) auto;
-  grid-column-gap: var(--gutter);
+  // grid-column-gap: var(--gutter);
 
   .site__header {
     margin-top: calc( var(--row) * 3 );
@@ -59,7 +59,7 @@
 .post-item {
   display: flex;
   flex-direction: column;
-
+  align-items: flex-end;
   .post__image-container--portrait {
     width: calc( var(--column) * 5 + var(--gutter) * 4);
 
@@ -91,4 +91,40 @@
     text-align: right;
     margin-right: var(--column);
   }
+}
+
+.post-list--texts {
+  list-style: inside;
+}
+
+.post-item--article {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-right: var(--column);
+  margin-top: calc( var(--row) * 2);
+  margin-bottom: calc( var(--row) * 2);
+}
+
+.post-item__date {
+  align-self: flex-end;
+}
+
+.post-item__separator {
+  content: '';
+  width: 100%;
+  height: 1px;
+  display: block;
+  background-color: black;
+}
+
+.post-item__bullet {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: calc(1em /7);
+  margin-right: 10px;
+  background-color: black;
 }

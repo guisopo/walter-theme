@@ -11,26 +11,26 @@ get_header();
 ?>
 
 <?php
-  if( have_posts() ) :
+if( have_posts() ) :
+?>
 
-    ?>
-    <ul class="post-list">
-      <?php
-
-      while( have_posts() ) : the_post();
-
-        get_template_part( 'template-parts/content', get_post_format() );
-
-      endwhile;
-      ?>
-    </ul>
+  <ul class="post-list">
     <?php
-    previous_posts_link( 'Newer Posts' );
-    next_posts_link( 'Older Posts' );
 
-  endif;
+    while( have_posts() ) : the_post();
 
-  wp_reset_postdata();
+      get_template_part( 'template-parts/content', get_post_format() );
+
+    endwhile;
+    ?>
+  </ul>
+  <?php
+  previous_posts_link( 'Newer Posts' );
+  next_posts_link( 'Older Posts' );
+
+endif;
+
+wp_reset_postdata();
 
 ?>
 

@@ -27,10 +27,6 @@ body {
   font-size: var(--text-base-size);
 }
 
-h1, h2, h3, h4, form legend {
-  // margin-bottom: var(--space-xs);
-}
-
 .site__header{
   .header__logo {
     font-family: var(--font-secondary);
@@ -53,6 +49,11 @@ h1, h2, h3, h4, form legend {
   }
   .post-title {
     font-style: italic;
+  }
+
+  .post-item__date {
+    font-size: var(--text-s);
+    font-weight: 700;
   }
 }
 
