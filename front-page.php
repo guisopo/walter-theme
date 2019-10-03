@@ -13,12 +13,18 @@ get_header();
 <?php
   if( have_posts() ) :
 
-    while( have_posts() ) : the_post();
+    ?>
+    <ul class="post-list">
+      <?php
 
-      get_template_part( 'template-parts/content', get_post_format() );
+      while( have_posts() ) : the_post();
 
-    endwhile;
+        get_template_part( 'template-parts/content', get_post_format() );
 
+      endwhile;
+      ?>
+    </ul>
+    <?php
     previous_posts_link( 'Newer Posts' );
     next_posts_link( 'Older Posts' );
 
