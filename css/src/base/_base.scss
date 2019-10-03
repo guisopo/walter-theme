@@ -1,0 +1,18 @@
+:root {
+  --color-primary: rgb(0, 0, 0);
+  --color-text: --color-primary;
+  --color-link: --color-primary;
+}
+
+body {
+  scrollbar-width: none;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-link);
+}
+
+.site__main::-webkit-scrollbar { 
+  width: 0 !important 
+}

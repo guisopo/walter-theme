@@ -1,4 +1,32 @@
 <?php
+
+function walter_site_name() {
+
+  $site_name = get_bloginfo( 'name' );
+  $names = explode( ' ', $site_name );
+  $output = '';
+  
+  foreach ($names as $name) {
+    $output .= '<span>' . $name . '</span>';
+  }
+
+  echo $output;
+}
+/**
+ * Modifi main query to show just works post type.
+ *
+ * @see pre_get_posts
+ */
+function walter_main_custom_query( $query ) {
+  // Run only on the homepage
+  if ( $query->is_home() && $query->is_main_query() ) {
+    $query->set( 'post_type', 'works' );
+    $query->set( 'posts_per_page', 5 );
+  }
+}
+// Hook my above function to the pre_get_posts action
+add_action( 'pre_get_posts', 'walter_main_custom_query');
+
 /**
  * Get taxonomies terms links for single post.
  *
@@ -114,7 +142,7 @@ function walter_render_work_info( $meta ) {
   if( isset( $meta['date_completed'] ) ) {
     $output .= 
       '<p class="post-item__data">
-        <span>'. get_the_title() .'</span>,&nbsp
+        <span class="post-title">'. get_the_title() .'</span>,&nbsp
         <span>'. $meta['date_completed'] .'</span>
       </p>'
     ;

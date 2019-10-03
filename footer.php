@@ -10,15 +10,8 @@
 
       </main><!-- #main -->
       
-      <footer id="footer">
-        <?php
-          $menu_args = array(
-            'theme_loaction' => 'primary',
-            'menu_class'     => 'nav-menu'
-          );
-
-          wp_nav_menu( $menu_args );
-        ?>
+      <footer id="footer" class="site__footer">
+        
       </footer>
 
     </div><!-- #page -->

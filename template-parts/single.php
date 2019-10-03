@@ -12,12 +12,15 @@ $meta = walter_get_post_meta( get_the_ID() );
 
 <article class="post">
 
-	<div class="post__info">
-		<?php walter_render_work_info($meta); ?>
-	</div>
+	<h1><?php the_title(); ?></h1>
 
-	<div class="post__gallery">
-		<?php echo walter_render_gallery( $meta['gallery'] ); ?>
-	</div>
+	<?php the_content(); ?>
 
 </article><!-- article -->
+
+<div>
+<?php
+	previous_post_link( '%link', 'Previous' );
+	next_post_link( '%link', 'Next' );
+?>
+</div>
