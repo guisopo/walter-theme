@@ -43,28 +43,25 @@ body {
   }
 }
 
-.work {
+.content {
 
-  .work__data:not(:first-of-type) {
+  .content__data:not(:first-of-type) {
     font-size: var(--text-xs);
   }
-  .work__title {
+  .content__title {
     font-style: italic;
   }
 
-  .work__date {
+  .content__date {
     font-size: var(--text-s);
     font-weight: 700;
   }
 }
 
-.post {
-  
-  .post-title {
-    font-family: var(--font-secondary);
-    font-size: var(--text-m);
-    font-weight: 700;
-    margin-bottom: var(--space-s);
-  }
+.article-title {
+  font-family: var(--font-secondary);
+  font-size: var(--text-m);
+  font-weight: 700;
+  margin-bottom: var(--space-s);
 }
 

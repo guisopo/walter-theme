@@ -102,8 +102,8 @@ function walter_render_work_info( $meta ) {
 
   if( isset( $meta['date_completed'] ) ) {
     $output .= 
-      '<p class="work__data">
-        <span class="work__title">'. get_the_title() .'</span>,&nbsp
+      '<p class="content__data">
+        <span class="content__title">'. get_the_title() .'</span>,&nbsp
         <span>'. $meta['date_completed'] .'</span>
       </p>'
     ;
@@ -111,7 +111,7 @@ function walter_render_work_info( $meta ) {
 
   if( isset( $meta['material'] ) ) {
     $output .=
-      '<p class="work__data">
+      '<p class="content__data">
         <span>'. $meta['material'] .'</span>
       </p>'
     ;
@@ -119,7 +119,7 @@ function walter_render_work_info( $meta ) {
 
   if ( isset( $meta['dimensions'], $meta['units'] ) ) {
     $output .=
-      '<p class="work__data">
+      '<p class="content__data">
         <span>'. $meta['dimensions'] .'</span>
         <span>'. $meta['units'] .'</span>
       </p>'

@@ -10,23 +10,25 @@
 $meta = walter_get_post_meta( get_the_ID() );
 ?>
 
-<li class="work">
+<li class="content">
 
   <?php
-    if ( has_post_thumbnail( $post->ID ) ) :
-      $image_orientation = give_image_orientation( $post->ID );
+  if ( has_post_thumbnail( $post->ID ) ) :
+    $image_orientation = give_image_orientation( $post->ID );
   ?>
-    <a class="work__link" href=<?php echo esc_url( get_permalink() ); ?>>
-      <figure class="work__image-container <?php echo 'work__image-container--'.$image_orientation ?>">
+    <a class="content__link" href=<?php echo esc_url( get_permalink() ); ?>>
+      
+      <figure class="content__image-container <?php echo 'content__image-container--'.$image_orientation ?>">
         <?php the_post_thumbnail( 'medium' ); ?>
       </figure>
+      
     </a>
 
   <?php
-    endif;
+  endif;
   ?>
 
-  <div class="work__info <?php echo 'work__info--'.$image_orientation ?>">
+  <div class="content__info <?php echo 'content__info--'.$image_orientation ?>">
     <?php walter_render_work_info($meta); ?>
   </div>
 

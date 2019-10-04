@@ -10,22 +10,26 @@
 $meta = walter_get_post_meta( get_the_ID() );
 ?>
 
-<li class="post-item post-item--list">
+<li class="content">
 
   <?php
-  if (has_post_thumbnail( $post->ID ) ):
+  if ( has_post_thumbnail( $post->ID ) ) :
+    $image_orientation = give_image_orientation( $post->ID );
   ?>
-
-  <a class="post-item__link" href=<?php echo esc_url( get_permalink() ); ?>>
-    <figure class="post__image-container">
-	  	<?php the_post_thumbnail( 'medium' ); ?>
-	  </figure>
-  </a>
+    <a class="content__link" href=<?php echo esc_url( get_permalink() ); ?>>
+      
+      <figure class="content__image-container <?php echo 'content__image-container--'.$image_orientation ?>">
+        <?php the_post_thumbnail( 'medium' ); ?>
+      </figure>
+      
+    </a>
 
   <?php
   endif;
   ?>
 
-  <?php walter_render_work_info($meta); ?>
+  <div class="content__info <?php echo 'content__info--'.$image_orientation ?>">
+    <?php walter_render_work_info($meta); ?>
+  </div>
 
 </li><!-- .post-item -->

@@ -9,14 +9,20 @@
 
 ?>
 
-<li class="post-item post-item--article">
+<li class="content content--texts">
+  
+  <span class="bullet-container">
+    <span class="bullet"></span>
+  </span>
 
-  <a class="post-item__link" href=<?php echo esc_url( get_permalink() ); ?>>
-    <p><span class="post-item__bullet"></span><?php the_title(); ?></p>
+  <a class="content__link" href=<?php echo esc_url( get_permalink() ); ?>>
+    
+    <p><?php the_title(); ?></p>
+
   </a>
   
-  <span class="post-item__date"><?php echo get_the_date( 'Y' ); ?></span>
+  <span class="content__date"><?php echo get_the_date( 'Y' ); ?></span>
 
-</li><!-- .post-item -->
+</li><!-- .content -->
 
-<span class="post-item__separator"></span>
+<span class="list-separator"></span>

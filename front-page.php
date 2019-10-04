@@ -14,7 +14,7 @@ get_header();
 if( have_posts() ) :
 ?>
 
-  <ul class="work-list">
+  <ul class="content-list">
 
     <?php
       while( have_posts() ) : the_post();
@@ -22,13 +22,14 @@ if( have_posts() ) :
         get_template_part( 'template-parts/content', get_post_format() );
 
       endwhile;
+
+      previous_posts_link( 'Newer Posts' );
+      next_posts_link( 'Older Posts' );
     ?>
 
   </ul>
 
-  <?php
-    previous_posts_link( 'Newer Posts' );
-    next_posts_link( 'Older Posts' );
+<?php
 
 endif;
 
