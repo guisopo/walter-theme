@@ -104,7 +104,7 @@ function walter_render_work_info( $meta ) {
     $output .= 
       '<p class="content__data">
         <span class="content__title">'. get_the_title() .'</span>,&nbsp
-        <span>'. $meta['date_completed'] .'</span>
+        <span class="content__year">'. $meta['date_completed'] .'</span>
       </p>'
     ;
   }
@@ -112,7 +112,7 @@ function walter_render_work_info( $meta ) {
   if( isset( $meta['material'] ) ) {
     $output .=
       '<p class="content__data">
-        <span>'. $meta['material'] .'</span>
+        <span class="content__material">'. $meta['material'] .'</span>
       </p>'
     ;
   }
@@ -120,8 +120,8 @@ function walter_render_work_info( $meta ) {
   if ( isset( $meta['dimensions'], $meta['units'] ) ) {
     $output .=
       '<p class="content__data">
-        <span>'. $meta['dimensions'] .'</span>
-        <span>'. $meta['units'] .'</span>
+        <span class="content__dimensions">'. $meta['dimensions'] .'</span>
+        <span class="content__units">'. $meta['units'] .'</span>
       </p>'
     ;
   }
@@ -134,20 +134,27 @@ function walter_render_work_info( $meta ) {
  *
  * @see get_post_meta()
  */
-function walter_render_gallery( $gallery_array) {
+function walter_render_gallery( $gallery_array, $page = '') {
+
   $images_id = explode(',', $gallery_array );
 
-  $figure = '<figure class="post__gallery">';
+  $output = '<div class="' . $page . '__gallery">';
 
   foreach ($images_id as $image_id) {
     $image =  wp_get_attachment_image( $image_id, 'medium', false );
+
+    $orientation = give_image_orientation ( $image_id );
     
-    $figure .= '<div class="post__image">' . $image . '</div>';
+    $class = $page . '__image-container ' . $page . '__image-container--' . $orientation ;
+
+    $output .= '<div class="' . $page . '__gallery-wrapper">';
+    $output .= '<figure class="' . $class . '">' . $image . '</figure>';
+    $output .= '</div>';
   }
 
-  $figure .= '</figure>';
+  $output .= '</div>';
 
-  return $figure;
+  return $output;
 }
 
 /**
@@ -155,9 +162,9 @@ function walter_render_gallery( $gallery_array) {
  *
  * @see wp_get_attachment_image_src()
  */
-function give_image_orientation ( $id ) {
+function give_image_orientation ( $image_id ) {
 
-  $image = wp_get_attachment_image_src( get_post_thumbnail_id($id), '');
+  $image = wp_get_attachment_image_src( $image_id, 'medium');
   $image_w = $image[1];
   $image_h = $image[2];
 

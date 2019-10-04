@@ -8,13 +8,14 @@
  */
 
 $meta = walter_get_post_meta( get_the_ID() );
+
 ?>
 
-<li class="content">
+<li <?php post_class( 'content' ); ?>>
 
   <?php
   if ( has_post_thumbnail( $post->ID ) ) :
-    $image_orientation = give_image_orientation( $post->ID );
+    $image_orientation = give_image_orientation( get_post_thumbnail_id($post->ID) );
   ?>
     <a class="content__link" href=<?php echo esc_url( get_permalink() ); ?>>
       
@@ -26,10 +27,16 @@ $meta = walter_get_post_meta( get_the_ID() );
 
   <?php
   endif;
-  ?>
 
-  <div class="content__info <?php echo 'content__info--'.$image_orientation ?>">
-    <?php walter_render_work_info($meta); ?>
-  </div>
+  if ( !empty( $meta ) ) {
+    ?>
+
+    <div class="content__info <?php echo 'content__info--'.$image_orientation ?>">
+      <?php walter_render_work_info($meta); ?>
+    </div>
+
+    <?php
+  }
+  ?>
 
 </li><!-- .post-item -->

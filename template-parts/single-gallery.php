@@ -10,14 +10,12 @@
 $meta = walter_get_post_meta( get_the_ID() );
 ?>
 
-<article class="post">
+<article class="work-wrapper">
 
-	<div class="post__info">
+	<div class="work__info">
 		<?php walter_render_work_info($meta); ?>
 	</div>
 
-	<div class="post__gallery">
-		<?php echo walter_render_gallery( $meta['gallery'] ); ?>
-	</div>
+	<?php echo walter_render_gallery( $meta['gallery'], 'work' ); ?>
 
 </article><!-- article -->

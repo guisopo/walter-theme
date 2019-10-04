@@ -7,7 +7,7 @@
  * @package Folio
  */
 
-$meta = folio_get_post_meta( get_the_ID() );
+$meta = walter_get_post_meta( get_the_ID() );
 ?>
 
 <article class="post">
@@ -17,15 +17,17 @@ $meta = folio_get_post_meta( get_the_ID() );
 		<?php the_post_thumbnail( 'medium' ); ?>
 
 	</figure>
+	
+	<?php
+		if( !empty($meta) ) {
+			?>
+			<div class="post__information">
 
-	<div class="post__information">
+				<?php folio_render_work_info($meta); ?>
 
-		<?php folio_render_work_info($meta); ?>
-
-	</div>
+			</div>
+			<?php
+		}
+	?>
 
 </article>
-
-<?php
-
-echo folio_render_post_nav( 'work_type' );

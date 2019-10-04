@@ -43,12 +43,41 @@
     scrollbar-width: none;
 
     .content-list, 
-    .article {
-      padding-top: calc( var(--row) * 14 );
+    .article,
+    .page,
+    .work,
+    .work-wrapper {
+      padding-top: calc( var(--row) * 15 );
       margin-bottom: calc( var(--row) * 4 );
     }
 
-    .content-list {
+    .work-wrapper {
+      margin-bottom: calc( var(--row) * 8 );
+      .work__gallery-wrapper {
+        margin-top: calc( var(--row) * 2 );
+        margin-bottom: calc( var(--row) * 4 );
+      }
+    }
+
+    .content--texts {
+      flex-direction: row;
+      align-items: baseline;
+      margin-right: var(--column);
+      .content__link {
+        display: inline-block;
+        width: 80%;
+      }
+      
+      .content__date {
+        margin-left: 8px;
+        float: right;
+        align-self: flex-end;
+      }
+      
+    }
+
+    .content-list,
+    .work {
       margin-left: var(--gutter);
     }
 
@@ -71,12 +100,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  .content__image-container--portrait {
+  
+  .content__image-container--portrait,
+  .work__image-container--portrait {
     width: calc( var(--column) * 5 + var(--gutter) * 4);
   }
 
-  .content__image-container--landscape {
+  .content__image-container--landscape,
+  .work__image-container--landscape {
     width: calc( var(--column) * 6 + var(--gutter) * 4);
   }
 
@@ -101,21 +132,18 @@
   }
 }
 
-.content--texts {
-  flex-direction: row;
-  align-items: baseline;
-  margin-right: var(--column);
-  .content__link {
-    display: inline-block;
-    width: 80%;
-  }
-  
-  .content__date {
-    margin-left: 8px;
-    float: right;
-    align-self: flex-end;
-  }
-  
+.sketches {
+  margin-bottom: calc( var(--row) * 6 );
+}
+
+.content__image-container--portrait,
+.work__image-container--portrait {
+  width: calc( var(--column) * 5 + var(--gutter) * 4);
+}
+
+.content__image-container--landscape,
+.work__image-container--landscape {
+  width: calc( var(--column) * 6 + var(--gutter) * 4);
 }
 
 .list-separator {
@@ -145,6 +173,28 @@
 
 .article {
   margin-right: var(--column);
+}
+
+.work-wrapper {
+
+  .work__info {
+    margin-right: var(--column);
+    text-align: right;
+
+    .content__data {
+      margin-bottom: calc( var(--row) * 1 );
+    }
+  }
+
+  .work__gallery-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work__image-container--portrait {
+    align-self: flex-end;
+  }
+
 }
 
 svg {

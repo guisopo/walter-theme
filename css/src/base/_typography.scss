@@ -65,3 +65,25 @@ body {
   margin-bottom: var(--space-s);
 }
 
+.work-wrapper {
+
+  .content__data {
+    
+    .content__title {
+      font-size: var(--text-xl);
+      font-style: italic;
+    }
+  
+    .content__year {
+      font-size: var(--text-l);
+    }
+
+    .content__material {
+      font-size: var(--text-s);
+    }
+  }
+
+
+}
+
+
