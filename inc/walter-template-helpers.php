@@ -21,7 +21,7 @@ function walter_main_custom_query( $query ) {
   // Run only on the homepage
   if ( $query->is_home() && $query->is_main_query() ) {
     $query->set( 'post_type', 'works' );
-    $query->set( 'posts_per_page', 5 );
+    $query->set( 'posts_per_page', 10 );
   }
 }
 // Hook my above function to the pre_get_posts action
@@ -84,45 +84,6 @@ function walter_render_post_nav( $taxonomy ) {
 }
 
 /**
- * Create unordered list with given taxonomy.
- *
- * @see get_terms()
- * @see get_term_link()
- */
-function walter_render_taxonmy_list( $tax_name ) {
-
-  $terms_args = array(
-    'taxonomy'   => $tax_name,
-    'orderby'    => 'count',
-    'order'      => 'DESC'
-  );
-
-  $terms = get_terms( $terms_args );
-
-  $output = '<ul class="taxonomy-list">';
-
-  if ( ! empty( $terms ) && taxonomy_exists( $tax_name ) ) {
-
-    foreach ( $terms as $term ) {
-
-      $term_link = esc_url( get_term_link( $term->name, $term->taxonomy ) );
-
-      $output .=
-        '<li class="taxonomy-item">
-            <a class="taxonomy-link" href="' . $term_link  . '">'. $term->name .'</a>
-        </li>'
-      ;
-    } 
-  } else {
-    return '<p>ERROR <b>create_taxonmy_list()</b>: Given taxonomy doesn\'t exist or is empty.</p>';
-  }
-
-  $output .= '</ul>';
-
-  return $output;
-}
-
-/**
  * Get custom meta values from post.
  *
  * @see get_post_meta()
@@ -141,8 +102,8 @@ function walter_render_work_info( $meta ) {
 
   if( isset( $meta['date_completed'] ) ) {
     $output .= 
-      '<p class="post-item__data">
-        <span class="post-title">'. get_the_title() .'</span>,&nbsp
+      '<p class="work__data">
+        <span class="work__title">'. get_the_title() .'</span>,&nbsp
         <span>'. $meta['date_completed'] .'</span>
       </p>'
     ;
@@ -150,7 +111,7 @@ function walter_render_work_info( $meta ) {
 
   if( isset( $meta['material'] ) ) {
     $output .=
-      '<p class="post-item__data">
+      '<p class="work__data">
         <span>'. $meta['material'] .'</span>
       </p>'
     ;
@@ -158,7 +119,7 @@ function walter_render_work_info( $meta ) {
 
   if ( isset( $meta['dimensions'], $meta['units'] ) ) {
     $output .=
-      '<p class="post-item__data">
+      '<p class="work__data">
         <span>'. $meta['dimensions'] .'</span>
         <span>'. $meta['units'] .'</span>
       </p>'
@@ -187,4 +148,26 @@ function walter_render_gallery( $gallery_array) {
   $figure .= '</figure>';
 
   return $figure;
+}
+
+/**
+ * Give image orientation
+ *
+ * @see wp_get_attachment_image_src()
+ */
+function give_image_orientation ( $id ) {
+
+  $image = wp_get_attachment_image_src( get_post_thumbnail_id($id), '');
+  $image_w = $image[1];
+  $image_h = $image[2];
+
+  if ($image_w > $image_h) { 
+    return 'landscape';
+  }
+  elseif ($image_w == $image_h) { 
+    return 'square';
+  }
+  else { 
+    return 'portrait';
+  } 
 }

@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Folio
+ * @package Walter
  */
 
 get_header();
@@ -14,19 +14,21 @@ get_header();
 if( have_posts() ) :
 ?>
 
-  <ul class="post-list">
+  <ul class="work-list">
+
     <?php
+      while( have_posts() ) : the_post();
 
-    while( have_posts() ) : the_post();
+        get_template_part( 'template-parts/content', get_post_format() );
 
-      get_template_part( 'template-parts/content', get_post_format() );
-
-    endwhile;
+      endwhile;
     ?>
+
   </ul>
+
   <?php
-  previous_posts_link( 'Newer Posts' );
-  next_posts_link( 'Older Posts' );
+    previous_posts_link( 'Newer Posts' );
+    next_posts_link( 'Older Posts' );
 
 endif;
 

@@ -8,13 +8,12 @@
  */
 ?>
 
-      </main><!-- #main -->
+    </main><!-- #main -->
+    
+    <footer id="footer" class="site__footer">
       
-      <footer id="footer" class="site__footer">
-        
-      </footer>
+    </footer>
 
-    </div><!-- #page -->
 
     <?php wp_footer(); ?>
 

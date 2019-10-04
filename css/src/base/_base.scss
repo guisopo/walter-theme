@@ -14,6 +14,11 @@ a {
   color: var(--color-link);
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 .site__main::-webkit-scrollbar { 
   width: 0 !important 
 }

@@ -10,35 +10,23 @@
 $meta = walter_get_post_meta( get_the_ID() );
 ?>
 
-<li class="post-item post-item--gallery">
+<li class="work">
 
   <?php
-  if (has_post_thumbnail( $post->ID ) ):
-    $image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '');
-    $image_w = $image[1];
-    $image_h = $image[2];
-
-    if ($image_w > $image_h) { 
-      $class = 'landscape';
-    }
-    elseif ($image_w == $image_h) { 
-      $class = 'square';
-    }
-    else { 
-      $class = 'portrait';
-    } 
+    if ( has_post_thumbnail( $post->ID ) ) :
+      $image_orientation = give_image_orientation( $post->ID );
   ?>
-    <a class="post-item__link" href=<?php echo esc_url( get_permalink() ); ?>>
-      <figure class="post__image-container <?php echo 'post__image-container--'.$class ?>">
+    <a class="work__link" href=<?php echo esc_url( get_permalink() ); ?>>
+      <figure class="work__image-container <?php echo 'work__image-container--'.$image_orientation ?>">
         <?php the_post_thumbnail( 'medium' ); ?>
       </figure>
     </a>
 
   <?php
-  endif;
+    endif;
   ?>
 
-  <div class="post-item__info <?php echo 'post-item__info--'.$class ?>">
+  <div class="work__info <?php echo 'work__info--'.$image_orientation ?>">
     <?php walter_render_work_info($meta); ?>
   </div>
 
