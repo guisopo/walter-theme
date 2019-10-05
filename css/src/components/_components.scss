@@ -1,4 +1,6 @@
+// ====
 // LOGO
+
 .site__logo a {
   display: flex;
   flex-direction: column;
@@ -8,7 +10,9 @@
   }
 }
 
+// ========
 // MAIN NAV
+
 .site__nav {
   position: relative;
   display: flex;
@@ -25,4 +29,36 @@
     // Align Hack
     line-height: 10px;
   }
+}
+
+svg {
+  display: none;
+}
+
+// =====================
+// TEXTS LIST COMPONENTS
+
+.list-separator {
+  content: '';
+  display: block;
+  width: calc(100% + var(--column));
+  height: 1px;
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-s);
+  background-color: black;
+}
+
+.bullet-container {
+  padding-bottom: calc(var(--text-base-size) / 5);
+  margin-right: calc(var(--text-base-size) / 2);
+  margin-left: calc(var(--text-base-size) / 4);
+}
+
+.bullet {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: black;
 }
