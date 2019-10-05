@@ -23,7 +23,7 @@ $meta = walter_get_post_meta( get_the_ID() );
 			?>
 			<div class="post__information">
 
-				<?php folio_render_work_info($meta); ?>
+				<?php walter_render_work_info($meta); ?>
 
 			</div>
 			<?php

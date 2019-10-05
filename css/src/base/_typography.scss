@@ -45,9 +45,15 @@ body {
 
 .content {
 
-  .content__data:not(:first-of-type) {
-    font-size: var(--text-xs);
+  .content__data:first-of-type {
+    line-height: calc( var(--row) * 2);
   }
+
+  .content__data:not(:first-of-type) {
+    font-size: var(--text-s);
+    line-height: calc( var(--row) * 1.75);
+  }
+
   .content__title {
     font-style: italic;
   }
@@ -62,7 +68,7 @@ body {
   font-family: var(--font-secondary);
   font-size: var(--text-m);
   font-weight: 700;
-  margin-bottom: var(--space-s);
+  margin-bottom: var(--space-xs);
 }
 
 .work-wrapper {
@@ -86,5 +92,3 @@ body {
 
 
 }
-
-

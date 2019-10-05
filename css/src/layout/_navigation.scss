@@ -10,7 +10,7 @@
   }
 
   .menu-item {
-    margin: 1em 0;
+    margin: var(--space-s) 0;
     // Align Hack
     line-height: 10px;
   }
