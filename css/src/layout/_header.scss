@@ -1,0 +1,8 @@
+.site__logo a {
+  display: flex;
+  flex-direction: column;
+
+  span:nth-child(2) {
+    margin-left: calc(var(--column) + var(--gutter));
+  }
+}

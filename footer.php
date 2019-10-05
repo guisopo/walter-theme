@@ -7,15 +7,14 @@
  * @package Walter
  */
 ?>
-
-    </main><!-- #main -->
+  
+  </main>
+  <footer id="footer" class="site__footer">
     
-    <footer id="footer" class="site__footer">
-      
-    </footer>
+  </footer>
 
 
-    <?php wp_footer(); ?>
+  <?php wp_footer(); ?>
 
   </body>
 </html>
