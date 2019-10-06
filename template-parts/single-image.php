@@ -10,24 +10,30 @@
 $meta = walter_get_post_meta( get_the_ID() );
 ?>
 
-<article class="post">
-
-	<figure class="post__image-container">
-
-		<?php the_post_thumbnail( 'medium' ); ?>
-
-	</figure>
-	
+<article class="work-wrapper">
+		
 	<?php
 		if( !empty($meta) ) {
 			?>
-			<div class="post__information">
+			<div class="work__info">
 
-				<?php walter_render_work_info($meta); ?>
+				<h2 class="work__title"><?php echo get_the_title(); ?></h2>
+				<p class="work__year"><?php echo $meta['date_completed'] ?></p>
 
 			</div>
 			<?php
 		}
 	?>
 
+	<figure class="work__image-container">
+
+		<?php the_post_thumbnail( 'medium' ); ?>
+
+	</figure>
+
+	<nav class="work-nav">
+		<a href="<?php echo esc_url( home_url( '/') ); ?>">Close</a>
+		<?php previous_post_link( '%link', 'Next work'); ?>
+	</nav>
+	
 </article>

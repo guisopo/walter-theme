@@ -1,0 +1,7 @@
+.site.single-format-gallery,
+.site.single-format-image {
+
+  .site__nav li {
+    transform: translateX( calc( var(--column) + 100% ));
+  }
+}

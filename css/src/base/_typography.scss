@@ -89,6 +89,18 @@ body {
       font-size: var(--text-s);
     }
   }
+}
 
+.single-format-image {
+  
+  .work__info {
+    font-size: var(--text-l);
+  }
+}
 
+.work-nav {
+  font-family: var(--font-secondary);
+  font-size: var(--text-m);
+  font-weight: 700;
+  text-transform: uppercase;
 }

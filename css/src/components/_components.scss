@@ -14,11 +14,10 @@
 // MAIN NAV
 
 .site__nav {
-  position: relative;
+  position: fixed;
   display: flex;
   padding-left: var(--column);
-  height: inherit;
-  align-items: flex-end;
+  bottom: 0;
   
   .menu-list {
     transform: rotateZ(180deg) translateX(100%);
@@ -61,4 +60,14 @@ svg {
   height: 4px;
   border-radius: 50%;
   background-color: black;
+}
+
+
+// =====================
+// NAV WORK
+
+.work-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-s);
 }

@@ -16,6 +16,13 @@ $meta = walter_get_post_meta( get_the_ID() );
 		<?php walter_render_work_info($meta); ?>
 	</div>
 
-	<?php echo walter_render_gallery( $meta['gallery'], 'work' ); ?>
+	<?php 
+		echo walter_render_gallery( $meta['gallery'], 'work' );
+	?>
+	
+	<nav class="work-nav">
+		<a href="<?php echo esc_url( home_url( '/') ); ?>">Close</a>
+		<?php previous_post_link( '%link', 'Next work'); ?>
+	</nav>
 
 </article><!-- article -->

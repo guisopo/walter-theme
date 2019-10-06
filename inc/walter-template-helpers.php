@@ -55,35 +55,6 @@ function walter_return_custom_taxonomy( $custom_taxonomy ) {
 }
 
 /**
- * Create taxonomy post navigation.
- *
- * @see get_previous_post_link()
- * @see get_next_post_link()
- */
-function walter_render_post_nav( $taxonomy ) {
-
-  $previous_link = get_previous_post_link( '%link', 'Previous', TRUE, '', $taxonomy );
-  $next_link = get_next_post_link( '%link', 'Next', TRUE, '', $taxonomy );
-  
-  $tax_terms = get_the_terms('', $taxonomy);
-  $tax_name = $tax_terms[0]->name;
-  $go_back_link = get_term_link( $tax_name, $taxonomy);
-
-  return '
-    <div class="post-navigation">
-      <span class="previous-post">
-        '. $previous_link .'
-      </span>
-      <span class="go-back-button">
-        <a href='. $go_back_link .'>Close</a>
-      </span>
-      <span class="next-post">
-        '. $next_link .'
-      </span>
-    </div>';
-}
-
-/**
  * Get custom meta values from post.
  *
  * @see get_post_meta()
