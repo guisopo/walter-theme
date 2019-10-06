@@ -11,6 +11,8 @@ const configureDevServer = () => {
 		inline: true,
 		overlay: true,
 		port: 8080,
+		compress: true,
+    disableHostCheck: true,
 	};
 };
 

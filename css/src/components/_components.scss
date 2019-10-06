@@ -30,8 +30,10 @@
   }
 }
 
-svg {
+.scrawl {
+  opacity: 0;
   display: none;
+  stroke-dasharray:386.6;
 }
 
 // =====================
