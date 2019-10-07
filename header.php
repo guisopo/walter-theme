@@ -46,7 +46,7 @@
     wp_nav_menu( $menu_args );
   ?>
   
-  <div class="scrawl">
+  <div class="doodle">
     <svg width="41px" height="82px" viewBox="0 0 41 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="iPhone-8" transform="translate(-6.000000, -302.000000)" stroke="#353232">
