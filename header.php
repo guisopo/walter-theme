@@ -31,7 +31,11 @@
 
     </div>
 
-    <?php
+  </header><!-- .page__header-->
+
+  <!-- We create the nav outside the header because if not
+  it will jump when scrolling in safar-iphone -->
+  <?php
     $menu_args = array(
       'theme_loaction'  => 'primary',
       'menu_id'         => 'menu-list',
@@ -56,8 +60,4 @@
     </svg>
   </div>
 
-  </header><!-- .page__header-->
-
-  
-  
   <main id="main" class="site__main">

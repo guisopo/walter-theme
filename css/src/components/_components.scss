@@ -15,6 +15,8 @@
 
 .site__nav {
   position: fixed;
+  display: flex;
+  padding-left: var(--column);
   bottom: 0;
   
   .menu-list {
@@ -28,10 +30,11 @@
   }
 }
 
-.scrawl {
+.doodle {
   opacity: 0;
   display: none;
   stroke-dasharray:386.6;
+  pointer-events: none
 }
 
 // =====================
