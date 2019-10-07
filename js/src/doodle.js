@@ -50,12 +50,12 @@ class Doodle {
 
     // this.verticalPosition = verticalPosition;
     
-    this.doodle.style.transform = `translate3d(
-      ${horizontalPositon}px, 
-      ${verticalPosition}px, 
-      0)`;
+    // this.doodle.style.transform = `translate3d(
+    //   ${horizontalPositon}px, 
+    //   ${verticalPosition}px, 
+    //   0)`;
 
-
+    this.doodle.style.top = `${itemActiveRect.y}px`
     this.doodle.style.opacity = '1';
   }
 
