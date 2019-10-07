@@ -55,8 +55,8 @@ class Doodle {
     //   0
     // )`;
 
-    this.svg.style.right = -translateX;
-    this.svg.style.top = translateY;
+    this.svg.style.right = -translateX + 'px';
+    this.svg.style.top = translateY + 'px';
 
     // this.itemActive.style.backgroundColor = 'rgba(255, 0, 0, 0.7)';
     // this.svg.style.backgroundColor = 'rgba(0, 255, 0, 0.4)';

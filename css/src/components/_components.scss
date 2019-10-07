@@ -18,11 +18,9 @@
   display: flex;
   padding-left: var(--column);
   bottom: 0;
-  overflow: visible;
   
   .menu-list {
     transform: rotateZ(180deg) translateX(100%);
-    overflow: visible;
   }
 
   .menu-item {
