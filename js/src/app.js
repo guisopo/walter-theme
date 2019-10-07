@@ -1,33 +1,47 @@
 import '../../css/src/main.scss';
 
-const addEvents = () => {
-  scribbleItem();
-  document.addEventListener( 'click', scribbleItem);
-  window.addEventListener( 'resize', scribbleItem);
+const startApp = () => {
+  return new App();
 }
 
-const scribbleItem = () => {
-  const navActive = document.querySelector('.active');
+class App {
 
-  if (!navActive) {
-    return;
+  constructor() {
+
+    this.scribbleItem();
+    this.addEvents();
   }
 
-  const scrawl = document.querySelector('.scrawl');
-  scrawl.style.cssText = 'display: block; position: fixed; bottom:0;'
+  addEvents() {
+    document.addEventListener( 'click', scribbleItem);
+    window.addEventListener( 'resize', scribbleItem);
+  } 
 
-  const navActiveRect = navActive.getBoundingClientRect();
-  const scrawlRect = scrawl.getBoundingClientRect();
 
-  const path = scrawl.querySelector('.path');
-  const offset = getComputedStyle(path).strokeDashoffset;
-  
-  scrawl.style.transform = `translate3d(
-    ${navActiveRect.x - (scrawlRect.width - navActiveRect.width)/2}px, 
-    ${navActiveRect.y - scrawlRect.y - (scrawlRect.height - navActiveRect.height)/2}px, 
-    0)`;
+  scribbleItem() {
+    const itemActive = document.querySelector('.active');
 
-  scrawl.style.opacity = '1';
+    if (!itemActive) {
+      return;
+    }
+
+    const scrawl = document.querySelector('.scrawl');
+    scrawl.style.cssText = 'display: block; position: fixed; bottom:0;'
+
+    const itemActiveRect = itemActive.getBoundingClientRect();
+    const scrawlRect = scrawl.getBoundingClientRect();
+
+    const path = scrawl.querySelector('.path');
+    const offset = getComputedStyle(path).strokeDashoffset;
+    
+    scrawl.style.transform = `translate3d(
+      ${itemActiveRect.x - (scrawlRect.width - itemActiveRect.width)/2}px, 
+      ${itemActiveRect.y - scrawlRect.y - (scrawlRect.height - itemActiveRect.height)/2}px, 
+      0)`;
+
+    scrawl.style.opacity = '1';
+  }
+
 }
 
-window.addEventListener('load', addEvents, false);
+window.addEventListener('load', startApp, false);
