@@ -31,9 +31,7 @@
 
     </div>
 
-  </header><!-- .page__header-->
-
-  <?php
+    <?php
     $menu_args = array(
       'theme_loaction'  => 'primary',
       'menu_id'         => 'menu-list',
@@ -57,5 +55,9 @@
       </g>
     </svg>
   </div>
+
+  </header><!-- .page__header-->
+
+  
   
   <main id="main" class="site__main">

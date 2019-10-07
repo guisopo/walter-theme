@@ -23,8 +23,6 @@ if( have_posts() ) :
 
       endwhile;
 
-      // previous_posts_link( 'Newer Posts' );
-      // next_posts_link( 'Older Posts' );
     ?>
 
   </ul>
