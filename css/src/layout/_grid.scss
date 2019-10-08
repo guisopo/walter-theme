@@ -49,6 +49,7 @@
     .page,
     .article {
       margin:  0 var(--column);
+      margin-bottom: var(--space-xl);
     }
   }
 }
@@ -130,6 +131,12 @@
     flex-direction: column;
     margin:  0 var(--column);
   }
+}
+
+.site.single-format-image .site__main .work-wrapper .work__image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // ==============
