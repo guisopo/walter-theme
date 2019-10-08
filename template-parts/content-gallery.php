@@ -33,7 +33,7 @@ if ( has_post_thumbnail( $post->ID ) ) :
 
   ?>
 
-</li><!-- .post-item -->
+</li>
 
 
 <?php

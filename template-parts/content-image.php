@@ -26,14 +26,16 @@ if ( has_post_thumbnail( $post->ID ) ) :
   <?php 
 
     if( !empty($meta)  ) {
-      echo '<div class="content__info  content__info--' .$image_orientation . '">
-        ' . walter_render_work_info($meta) . '
-      </div>';
+      $output = '<div class="content__info  content__info--' .$image_orientation . '">';
+      $output .= walter_render_work_info($meta);
+      $output .= '</div>';
+
+      echo $output;
     }
 
   ?>
   
-</li><!-- .post-item -->
+</li>
 
 
 <?php

@@ -97,7 +97,7 @@ function walter_render_work_info( $meta ) {
     ;
   }
 
-  echo $output;
+  return $output;
 }
 
 /**
