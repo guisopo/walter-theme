@@ -14,7 +14,7 @@ get_header();
 if( have_posts() ) :
 ?>
 
-  <ul class="content-list">
+  <ul class="content-list" data-scroll-content>
 
     <?php
       while( have_posts() ) : the_post();

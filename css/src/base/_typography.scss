@@ -12,6 +12,10 @@
   --text-xl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
   --text-xxl: calc(1em * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
 
+  @media ( orientation: landscape ) {
+    --text-base-size: 1.05vw;
+  }
+
   --heading-line-height: 1.2;
 
   --space-xs: 0.375em;
@@ -40,6 +44,10 @@ body {
     font-size: var(--text-m);
     writing-mode: vertical-rl;
     text-transform: uppercase;
+
+    @media ( orientation: landscape ) {
+      writing-mode: unset;
+    }
   }
 }
 
