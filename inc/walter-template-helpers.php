@@ -7,7 +7,13 @@ function walter_site_name() {
   $output = '';
   
   foreach ($names as $name) {
-    $output .= '<span>' . $name . '</span>';
+
+    $letters = str_split( $name);
+    $output .= '<span>';
+    foreach ($letters as $letter) {
+      $output .= '<span>' . $letter . '</span>';
+    }
+    $output .= '</span>';
   }
 
   echo $output;
