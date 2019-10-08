@@ -48,7 +48,7 @@ class Doodle {
     const translateX = (svgRect.width - activeRect.width)/2;
     const translateY = -(svgRect.height - activeRect.height)/2;
 
-    // Doesn't translate properly in chrome android
+    // Doesn't translate properly in chrome android and chrome ios
     // this.svg.style.transform = `translate3d(
     //   ${translateX}px,
     //   ${translateY}px,
