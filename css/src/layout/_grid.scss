@@ -138,15 +138,15 @@
   
   .work-wrapper {
     
-    .work__gallery-wrapper {
-      margin-top: var(--space-l);
+    .work__gallery-wrapper:not(:last-child) {
       margin-bottom: var(--space-l);
     }
   
     .work__info {
-      text-align: right;
       width: var(--col-4);
+      margin-bottom: var(--space-l);
       align-self: flex-end;
+      text-align: right;
   
       .content__data:not(:last-child) {
         margin-bottom: var(--space-xs);
@@ -161,6 +161,8 @@
 .site.single-format-image {
 
   .site__header {
+    transform-origin: left top;
+    // transform: scale(0.5);
     opacity: 0;
     pointer-events: none;
   }
@@ -173,11 +175,13 @@
       justify-content: space-between;
 
       .work__info {
+        margin-top: var(--space-s);
+        margin-bottom: var(--space-s);
         flex-grow: 1;
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin-bottom: var(--space-s);
+
         .work__title {
           font-style: italic;
           font-weight: 700;

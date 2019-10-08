@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  height: inherit;
   scroll-behavior: smooth;
   scrollbar-width: none;
   color: var(--color-text);

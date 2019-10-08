@@ -9,9 +9,9 @@ function walter_site_name() {
   foreach ($names as $name) {
 
     $letters = str_split( $name);
-    $output .= '<span>';
+    $output .= '<span class="logo-word">';
     foreach ($letters as $letter) {
-      $output .= '<span>' . $letter . '</span>';
+      $output .= '<span class="logo-letter">' . $letter . '</span>';
     }
     $output .= '</span>';
   }

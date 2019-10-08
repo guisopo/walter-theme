@@ -10,12 +10,21 @@ class Doodle {
     // 4. Length of path of Doodle
     this.pathLength;
 
-    this.init();
+    this.checker(this.itemActive);
   }
 
   bindAll() {
     [ 'appendSvg', 'getPathLength', 'setSvgInitialStyles' ]
       .forEach( fn => this[fn] = this[fn].bind(this));
+  }
+
+  checker(variable) {
+    // 1. Init just if variable exists
+    if(typeof variable === 'undefined' || variable === null) {
+      return false
+    };
+
+    this.init();
   }
 
   addEvents() {
