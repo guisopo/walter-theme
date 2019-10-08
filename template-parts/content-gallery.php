@@ -23,9 +23,15 @@ if ( has_post_thumbnail( $post->ID ) ) :
     
   </a>
 
-  <div class="content__info <?php echo 'content__info--'.$image_orientation ?>">
-    <?php walter_render_work_info($meta); ?>
-  </div>
+  <?php 
+
+    if( !empty($meta)  ) {
+      echo '<div class="content__info  content__info--' .$image_orientation . '">
+        ' . walter_render_work_info($meta) . '
+      </div>';
+    }
+
+  ?>
 
 </li><!-- .post-item -->
 
