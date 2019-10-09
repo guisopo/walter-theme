@@ -74,7 +74,7 @@ class SweetScroll {
           const toValue = this.options.scaleFactor;
           return 1 - Math.abs(Math.floor((this.map(this.scrollingSpeed, -1500, 1500, fromValue, toValue)) * 1000) / 1000);
         }
-      },
+      }
     };
 
     this.windowSize = {};
@@ -119,7 +119,9 @@ class SweetScroll {
     this.scrollingSpeed = this.data.current - this.data.last;
     
     this.options.content.style.transform = this.styles;
-    
+
+    this.options.scrollBar.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
+
     this.styles = '';
     
     for (const key in this.animatedStyles) {

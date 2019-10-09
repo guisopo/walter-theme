@@ -1,12 +1,15 @@
 import '../../css/src/main.scss';
 import Doodle from './doodle';
 import SweetScroll from './sweetScroll';
-import SweetScrollBar from './sweetScrollBar';
+
+const sweetScrollArgs = {
+  content: document.querySelector('[data-scroll-content]'),
+  scrollBar: document.querySelector('.scroll-bar')
+};
 
 const startApp = () => {
-  new SweetScrollBar();
 
-  new SweetScroll({content: document.querySelector('[data-scroll-content]')});
+  new SweetScroll(sweetScrollArgs);
 
   new Doodle();
 }
