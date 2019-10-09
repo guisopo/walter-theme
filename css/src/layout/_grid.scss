@@ -324,6 +324,8 @@
         left: 0;
         margin: 0;
         padding-top: var(--space-m);
+        padding-left: 25vw;
+        padding-right: 25vw;
         display: flex;
         will-change: transform;
       }
@@ -339,15 +341,15 @@
         display: block;
         margin-left: 0;
         margin-bottom: 0;
-        padding: 30vh 10vh;
+        padding: 17vh 10vh;
 
-        .work__image-container--landscape {
-          height: calc(90vh);
-          width: calc((90vh)*21/29.7);
+        .work__image-container--landscape img {
+          height: 65vh;
+          width: auto;
         }
-        .work__image-container--portrait {
-          height: calc(36vh * 21/29.7);
-          width: calc(36vh);
+        .work__image-container--portrait img {
+          height: 65vh;
+          width: auto;
         }
       }
 
@@ -377,6 +379,10 @@
     // transform: scale(0.5);
     opacity: 0;
     pointer-events: none;
+
+    @media ( orientation: landscape ) {
+      opacity: 1;
+    }
   }
 
   .site__main {
@@ -384,24 +390,43 @@
     .work-wrapper {
       height: 100%;
       padding: 0;
-      justify-content: space-between;
 
-      .work__info {
-        margin-top: var(--space-s);
-        margin-bottom: var(--space-s);
-        flex-grow: 1;
+      .work__image-container {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+        flex-direction: column-reverse;
+        flex-grow: 2;
 
-        .work__title {
-          font-style: italic;
-          font-weight: 700;
+        @media ( orientation: landscape ) {
+          flex-grow: unset;
+          img {
+            width: auto;
+            height: 75vh;
+          }
+        }
+
+        .work__info {
+          position: absolute;
+          top: 0;
+          margin-top: var(--space-s);
+          margin-bottom: var(--space-s);
+          display: flex;
+          justify-content: space-between;
+          width: calc(100% - var(--column) * 2);
+
+          .work__title {
+            font-style: italic;
+            font-weight: 700;
+          }
+  
+          @media ( orientation: landscape ) {
+            width: var(--col-3);
+            flex-grow: unset;
+          }
         }
       }
 
-      .work__image-container {
-        flex-grow: 2;
+      .work-nav {
+        margin-top: var(--space-s);
       }
 
     }
