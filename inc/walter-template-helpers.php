@@ -117,7 +117,7 @@ function walter_render_gallery( $gallery_array, $page = '') {
 
   $images_id = explode(',', $gallery_array );
 
-  $output = '<div class="' . $page . '__gallery">';
+  $output = '<div class="' . $page . '__gallery" data-scroll-content>';
 
   foreach ($images_id as $image_id) {
     $image =  wp_get_attachment_image( $image_id, 'medium', false );

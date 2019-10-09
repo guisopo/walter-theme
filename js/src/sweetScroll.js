@@ -137,16 +137,11 @@ class SweetScroll {
   touchStart(e) {
     this.start.x = e.touches[0].pageX;
     this.start.y = e.touches[0].pageY;
-
-    console.log(e.touches[0].pageX);
   }
 
   touch(e) {
-
     this.offset.x = this.start.x - e.touches[0].pageX;
     this.offset.y = this.start.y - e.touches[0].pageY;
-
-    console.log(this.offset);
   }
 
   addEvents() {
