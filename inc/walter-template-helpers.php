@@ -86,13 +86,11 @@ function walter_render_work_info( $meta ) {
     ;
   }
 
-  $output .= '<div class="content__wrapper>';
+  $output .= '<div class="content__wrapper">';
 
   if( isset( $meta['material'] ) ) {
     $output .=
-      '<p class="content__data">
-        <span class="content__material">'. $meta['material'] .'</span>
-      </p>'
+      '<p class="content__data">'. $meta['material'] .'</p>'
     ;
   }
 
