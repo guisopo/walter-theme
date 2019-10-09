@@ -86,6 +86,8 @@ function walter_render_work_info( $meta ) {
     ;
   }
 
+  $output .= '<div class="content__wrapper>';
+
   if( isset( $meta['material'] ) ) {
     $output .=
       '<p class="content__data">
@@ -102,6 +104,8 @@ function walter_render_work_info( $meta ) {
       </p>'
     ;
   }
+
+  $output .= '</div>';
 
   return $output;
 }

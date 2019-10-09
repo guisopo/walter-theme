@@ -44,7 +44,7 @@ class Doodle {
 
   setSvgInitialStyles() {
     this.doodle.parentElement.style.position ='relative';
-
+    
     this.doodle.style.cssText = 'position: absolute; top: 0; overflow: visible;';
     this.doodle.pointerEvents = 'none';
 

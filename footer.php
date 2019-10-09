@@ -10,7 +10,7 @@
   
   </main>
   <footer id="footer" class="site__footer">
-    
+    <span class="scroll-bar"></span>
   </footer>
 
 

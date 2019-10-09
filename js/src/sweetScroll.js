@@ -2,9 +2,10 @@ class SweetScroll {
   constructor(options = {}) {
     this.options = {
       content: options.content,
+      scrollBar: options.scrollBar || false,
       lerpFactor: options.lerpFactor || 0.1,
       scaleFactor: options.scaleFactor || 0.15,
-      skewFactor: options.skewFactor || 4 
+      skewFactor: options.skewFactor || 2
     }
 
     this.start = {x:0,y:0};
