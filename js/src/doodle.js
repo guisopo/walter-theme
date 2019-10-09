@@ -45,8 +45,8 @@ class Doodle {
   setSvgInitialStyles() {
     this.doodle.parentElement.style.position ='relative';
 
-    this.doodle.pointerEvents = 'none';
     this.doodle.style.cssText = 'position: absolute; top: 0; overflow: visible;';
+    this.doodle.pointerEvents = 'none';
 
     this.getPathLength();
     this.doodle.style.strokeDasharray = this.pathLength + ' ' + this.pathLength;

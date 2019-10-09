@@ -16,7 +16,7 @@ if ( have_posts() ) :
   $cpt = get_post_type( get_the_ID() );
 ?>
 
-  <ul class="content-list <?php echo 'content-list--'.$cpt ?>">
+  <ul class="content-list <?php echo 'content-list--'.$cpt ?>" data-scroll-content>
     
     <?php
       while ( have_posts() ) : the_post();

@@ -7,6 +7,9 @@ class SweetScroll {
       skewFactor: options.skewFactor || 4 
     }
 
+    this.start = {x:0,y:0};
+    this.offset = {};
+
     this.data = {
       current: 0,
       last: 0
@@ -81,7 +84,7 @@ class SweetScroll {
   }
 
   bindAll() {
-    ['wheel', 'run', 'setBounds']
+    ['wheel', 'touch', 'run', 'setBounds']
       .forEach( fn => this[fn] = this[fn].bind(this));
   }
 
@@ -128,8 +131,27 @@ class SweetScroll {
     requestAnimationFrame(() => this.run());
   }
 
+  touchStart(e) {
+    this.start.x = e.touches[0].pageX;
+    this.start.y = e.touches[0].pageY;
+
+    console.log(e.touches[0].pageX);
+  }
+
+  touch(e) {
+
+    this.offset.x = this.start.x - e.touches[0].pageX;
+    this.offset.y = this.start.y - e.touches[0].pageY;
+
+    console.log(this.offset);
+  }
+
   addEvents() {
     window.addEventListener('wheel', this.wheel, { passive: true });
+
+    // window.addEventListener('touchmove', this.touch, { passive: true });
+    // element.addEventListener("touchstart", this.touchStart, false);
+
     window.addEventListener('resize', this.setBounds);
   }
 

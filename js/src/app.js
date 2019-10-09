@@ -4,7 +4,7 @@ import SweetScroll from './sweetScroll';
 
 const startApp = () => {
   
-  // new SweetScroll({content: document.querySelector('[data-scroll-content]')});
+  new SweetScroll({content: document.querySelector('[data-scroll-content]')});
 
   new Doodle();
 }
