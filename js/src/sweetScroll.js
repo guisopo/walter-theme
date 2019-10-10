@@ -14,12 +14,15 @@ class SweetScroll {
     this.scrollBarRight = this.options.scrollBar[3];
 
     this.start = {x:0,y:0};
-    this.offset = {};
+    this.offset = {x:0,y:0};
 
     this.data = {
       current: 0,
-      last: 0
+      last: 0,
+      mouseDown: 0
     }
+
+    this.isDragging = false;
 
     this.renderedStyles = ''
     this.scrollingSpeed = 0;
@@ -31,8 +34,6 @@ class SweetScroll {
         current: 0,
         setStyle: () => `translate3d(-${this.animatedStyles.translateX.current}px, 0, 0)`,
         setValue: () => {
-          this.data.last = this.lerp(this.data.last, this.data.current, this.options.lerpFactor);
-          this.data.last = Math.floor(this.data.last * 1000) / 1000;
           return this.data.last;
         }
       },
@@ -42,8 +43,6 @@ class SweetScroll {
         current: 0,
         setStyle: () => `translate3d(0, -${this.animatedStyles.translateX.current}px, 0)`,
         setValue: () => {
-          this.data.last = this.lerp(this.data.last, this.data.current, this.options.lerpFactor);
-          this.data.last = Math.floor(this.data.last * 1000) / 1000;
           return this.data.last;
         }
       },
@@ -90,7 +89,7 @@ class SweetScroll {
   }
 
   bindAll() {
-    ['wheel', 'touch', 'touchStart', 'run', 'setBounds']
+    ['wheel', 'drag', 'getTouchX', 'getTouchMoveOffsetX', 'run', 'setBounds']
       .forEach( fn => this[fn] = this[fn].bind(this));
   }
 
@@ -120,15 +119,19 @@ class SweetScroll {
   }
 
   run() {
-    this.data.current = this.clamp(this.data.current, 0, this.contentWidth)
+    this.data.current = this.clamp(this.data.current, 0, this.contentWidth);
+
+    this.data.last = this.lerp(this.data.last, this.data.current, this.options.lerpFactor);
+    this.data.last = Math.floor(this.data.last * 1000) / 1000;
+
     this.scrollingSpeed = this.data.current - this.data.last;
     this.options.content.style.transform = this.styles;
-      
+    
     // this.options.scrollBar.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
-    this.scrollBarBottom.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
-    this.scrollBarTop.style.transform = `translateX(100vw) scale(-1, 1) scaleX(${this.data.current/this.contentWidth})`;
-    this.scrollBarLeft.style.transform = `scaleY(${this.data.current/this.contentWidth})`;
-    this.scrollBarRight.style.transform = `scaleY(${this.data.current/this.contentWidth})`;
+    this.scrollBarBottom.style.transform = `scaleX(${this.data.last/this.contentWidth})`;
+    this.scrollBarTop.style.transform = `translateX(100vw) scale(-1, 1) scaleX(${this.data.last/this.contentWidth})`;
+    this.scrollBarLeft.style.transform = `scaleY(${this.data.last/this.contentWidth})`;
+    this.scrollBarRight.style.transform = `scaleY(${this.data.last/this.contentWidth})`;
 
     this.styles = '';
     
@@ -142,23 +145,60 @@ class SweetScroll {
     requestAnimationFrame(() => this.run());
   }
 
-  touchStart(e) {
-    this.start.x = e.touches[0].pageX;
+  getTouchX(e) {
+    this.start.x = e.targetTouches[0].pageX;
+
+    this.options.content.addEventListener('touchmove', this.getTouchMoveOffsetX, { passive: true });
+    // this.option.content.addEventListener('touchend', this.getTouchMoveOffsetX, { passive: true });
+    // this.option.content.addEventListener('touchcancel', this.getTouchMoveOffsetX, { passive: true });
   }
 
-  touch(e) {
-    this.offset.x = (this.start.x - e.touches[0].pageX)*0.45;
+  getTouchMoveOffsetX(e) {
+    e.preventDefault();
+
+    this.offset.x = (this.start.x - e.targetTouches[0].pageX) / 2;
+    this.offset.x = this.clamp( this.offset.x, -40, 40);
+    console.log(this.offset);
     this.data.current += this.offset.x;
 
+    this.offset.x = 0;
+
+  }
+
+  drag(e) {
+    e.preventDefault();
+
+    this.data.current -= e.movementX*4;
+    
+    this.offset.x = 0;
   }
 
   addEvents() {
-    window.addEventListener('wheel', this.wheel, { passive: true });
+    this.options.content.addEventListener('wheel', this.wheel, { passive: true });
 
-    window.addEventListener('touchmove', this.touch, { passive: true });
-    window.addEventListener('touchstart', this.touchStart, { passive: true });
+    this.options.content.addEventListener('mousedown', (e) => {
+      this.isDragging = true;
+      this.data.mouseDown = e.clientX;
+    });
 
-    window.addEventListener('resize', this.setBounds);
+    this.options.content.addEventListener('mousemove', (e) => {
+      
+      if(!this.isDragging) return;
+      
+
+      this.drag(e);
+    }, { pasive: true });
+
+    this.options.content.addEventListener('mouseleave', () => {
+      this.isDragging = false;
+    }, { pasive: true });
+
+    this.options.content.addEventListener('mouseup', () => {
+      this.isDragging = false;
+    }, { pasive: true });
+
+    this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
+    this.options.content.addEventListener('resize', this.setBounds);
   }
 
   init() {
