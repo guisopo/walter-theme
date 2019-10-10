@@ -26,7 +26,7 @@ class SweetScroll {
 
     this.renderedStyles = ''
     this.scrollingSpeed = 0;
-
+    this.a = 0;
     this.animatedStyles = {
       translateX: {
         animate: true,
@@ -156,46 +156,43 @@ class SweetScroll {
   getTouchMoveOffsetX(e) {
     e.preventDefault();
 
-    this.offset.x = (this.start.x - e.targetTouches[0].pageX) / 2;
-    this.offset.x = this.clamp( this.offset.x, -40, 40);
-    console.log(this.offset);
+    this.offset.x = (this.start.x - e.targetTouches[0].pageX)/10;
     this.data.current += this.offset.x;
 
     this.offset.x = 0;
-
   }
 
   drag(e) {
     e.preventDefault();
+    // this.data.current -= e.movementX * 4;
 
-    this.data.current -= e.movementX*4;
-    
-    this.offset.x = 0;
+    this.offset.x =  (e.clientX - this.data.mouseDown);
+    this.offset.x = this.offset.x * 100 / this.options.content.offsetWidth;
+    this.data.current -= this.offset.x*5;
   }
 
   addEvents() {
     this.options.content.addEventListener('wheel', this.wheel, { passive: true });
 
+    this.options.content.addEventListener('mousemove', (e) => {
+      if(!this.isDragging) return;
+
+      this.drag(e);
+    }, { pasive: true });
+    
+    this.options.content.addEventListener('mouseleave', () => {
+      this.isDragging = false;
+    }, { pasive: true });
+    
+    
     this.options.content.addEventListener('mousedown', (e) => {
       this.isDragging = true;
       this.data.mouseDown = e.clientX;
     });
-
-    this.options.content.addEventListener('mousemove', (e) => {
-      
-      if(!this.isDragging) return;
-      
-
-      this.drag(e);
-    }, { pasive: true });
-
-    this.options.content.addEventListener('mouseleave', () => {
-      this.isDragging = false;
-    }, { pasive: true });
-
+    
     this.options.content.addEventListener('mouseup', () => {
       this.isDragging = false;
-    }, { pasive: true });
+    });
 
     this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
     this.options.content.addEventListener('resize', this.setBounds);
