@@ -10,7 +10,10 @@
   
   </main>
   <footer id="footer" class="site__footer">
-    <span class="scroll-bar"></span>
+    <span class="scroll-bar scroll-bar--bottom"></span>
+    <span class="scroll-bar scroll-bar--top"></span>
+    <span class="scroll-bar scroll-bar--left"></span>
+    <span class="scroll-bar scroll-bar--right"></span>
   </footer>
 
 
