@@ -8,6 +8,11 @@ class SweetScroll {
       skewFactor: options.skewFactor || 2
     }
 
+    this.scrollBarBottom = this.options.scrollBar[0];
+    this.scrollBarTop = this.options.scrollBar[1];
+    this.scrollBarLeft = this.options.scrollBar[2];
+    this.scrollBarRight = this.options.scrollBar[3];
+
     this.start = {x:0,y:0};
     this.offset = {};
 
@@ -85,7 +90,7 @@ class SweetScroll {
   }
 
   bindAll() {
-    ['wheel', 'touch', 'run', 'setBounds']
+    ['wheel', 'touch', 'touchStart', 'run', 'setBounds']
       .forEach( fn => this[fn] = this[fn].bind(this));
   }
 
@@ -117,10 +122,13 @@ class SweetScroll {
   run() {
     this.data.current = this.clamp(this.data.current, 0, this.contentWidth)
     this.scrollingSpeed = this.data.current - this.data.last;
-    
     this.options.content.style.transform = this.styles;
-
-    this.options.scrollBar.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
+      
+    // this.options.scrollBar.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
+    this.scrollBarBottom.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
+    this.scrollBarTop.style.transform = `translateX(100vw) scale(-1, 1) scaleX(${this.data.current/this.contentWidth})`;
+    this.scrollBarLeft.style.transform = `scaleY(${this.data.current/this.contentWidth})`;
+    this.scrollBarRight.style.transform = `scaleY(${this.data.current/this.contentWidth})`;
 
     this.styles = '';
     
@@ -136,19 +144,19 @@ class SweetScroll {
 
   touchStart(e) {
     this.start.x = e.touches[0].pageX;
-    this.start.y = e.touches[0].pageY;
   }
 
   touch(e) {
-    this.offset.x = this.start.x - e.touches[0].pageX;
-    this.offset.y = this.start.y - e.touches[0].pageY;
+    this.offset.x = (this.start.x - e.touches[0].pageX)*0.45;
+    this.data.current += this.offset.x;
+
   }
 
   addEvents() {
     window.addEventListener('wheel', this.wheel, { passive: true });
 
-    // window.addEventListener('touchmove', this.touch, { passive: true });
-    // element.addEventListener("touchstart", this.touchStart, false);
+    window.addEventListener('touchmove', this.touch, { passive: true });
+    window.addEventListener('touchstart', this.touchStart, { passive: true });
 
     window.addEventListener('resize', this.setBounds);
   }
