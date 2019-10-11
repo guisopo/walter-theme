@@ -161,54 +161,44 @@ class SweetScroll {
   }
 
   getTouchMoveOffsetX(e) {
-    e.preventDefault();
-    console.log(this.offset.cached);
+
     this.offset.x = Math.round(this.start.x - e.targetTouches[0].pageX);
     
-    this.data.current += this.offset.x;
-
-    this.offset.cached = this.offset.x;
+    this.data.current = -this.offset.x;
   }
 
   drag(e) {
     e.preventDefault();
-    // this.data.current -= e.movementX*4;
-    // console.log(this.offset.cached);
     
     this.offset.x =  (e.clientX - this.data.mouseDown);
-    this.offset.x = Math.round(this.offset.x * 100 / this.options.content.offsetWidth);
-    // this.offset.x = Math.round(this.offset.x * 100 / this.options.content.offsetWidth);
 
-    // if (this.data.mouseDown === e.clientX) return;
-
-    this.data.current -= this.offset.x;
-    console.log(this.data.mouseDown);
+    this.data.current = -this.offset.x;
   }
 
   addEvents() {
     this.options.content.addEventListener('wheel', this.wheel, { passive: true });
 
-    // this.options.content.addEventListener('mousemove', (e) => {
-    //   if(!this.isDragging) return;
+    this.options.content.addEventListener('mousemove', (e) => {
+      if(!this.isDragging) return;
 
-    //   this.drag(e);
-    // }, { pasive: true });
+      this.drag(e);
+    }, { pasive: true });
     
-    // this.options.content.addEventListener('mouseleave', () => {
-    //   this.isDragging = false;
-    // }, { pasive: true });
+    this.options.content.addEventListener('mouseleave', () => {
+      this.isDragging = false;
+    }, { pasive: true });
     
     
-    // this.options.content.addEventListener('mousedown', (e) => {
-    //   this.isDragging = true;
-    //   this.options.content.removeEventListener( 'wheel', this.wheel, { passive: true });
-    //   this.data.mouseDown = e.clientX;
-    // });
+    this.options.content.addEventListener('mousedown', (e) => {
+      this.isDragging = true;
+      this.options.content.removeEventListener( 'wheel', this.wheel, { passive: true });
+      this.data.mouseDown = e.clientX + this.data.current;
+    });
     
-    // this.options.content.addEventListener('mouseup', () => {
-    //   this.isDragging = false;
-    //   this.options.content.addEventListener('wheel', this.wheel, { passive: true });
-    // });
+    this.options.content.addEventListener('mouseup', () => {
+      this.isDragging = false;
+      this.options.content.addEventListener('wheel', this.wheel, { passive: true });
+    });
 
     // this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
     this.options.content.addEventListener('resize', this.setBounds);
