@@ -1,0 +1,44 @@
+.site__logo a {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  .logo-word:nth-child(2) {
+    // 1. Margin relative to columns and gutter
+    // margin-left: calc(var(--column) + var(--gutter));
+    // 2. Margin relative to size of word
+    margin-left: 1.7em;
+  }
+
+  .logo-letter {
+    display: inline-block;
+  }
+
+}
+
+.site__logo:hover .logo-letter:not(:first-child) {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.site-logo--small {
+
+  .logo-letter:first-child {
+    transform: translateX(-100%);
+  }
+
+  .logo-word:nth-child(2) {
+    margin-left: 0;
+  }
+
+  .logo-letter:not(:first-child) {
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  @for $i from 0 through 20 {
+    .logo-letter:nth-child(#{$i + 1}) {
+      transition-delay: 0.025s * $i;
+    }
+  }
+}

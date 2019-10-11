@@ -1,0 +1,62 @@
+// =====================
+// MAIN NAV
+
+.site__nav {
+  position: fixed;
+  display: flex;
+  padding-left: var(--column);
+  bottom: 0;
+  z-index: 2;
+
+  @media ( orientation: landscape ) {
+    bottom: unset;
+    right: 0;
+    margin-top: var(--space-xl);
+    margin-right: var(--offset);
+  }
+  
+  .menu-list {
+    transform: rotateZ(180deg) translateX(100%);
+
+    @media ( orientation: landscape ) {
+      display: flex;
+      flex-direction: row-reverse;
+      transform: unset;
+    }
+  }
+
+  .menu-item {
+    margin: var(--space-s) 0;
+    // Align Hack
+    line-height: 10px;
+
+    @media ( orientation: landscape ) {
+      margin-left: calc( var(--column) + var(--gutter));
+    }
+
+    svg {
+      @media ( orientation: landscape ) {
+        transform-origin: center center; 
+        transform: translate(-50%, -25%) rotateZ(90deg);
+      }
+    }
+  }
+}
+
+// =====================
+// SINGLE WORK NAV
+
+.work-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-l);
+  margin-bottom: var(--space-s);
+
+  @media ( orientation: landscape ) {
+    position: fixed;
+    flex-direction: column;
+    bottom: var(--space-s);
+    left: var(--offset);
+
+  }
+}

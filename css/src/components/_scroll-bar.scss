@@ -1,0 +1,40 @@
+.scroll-bar {
+
+  @media ( orientation: landscape ) {
+    content: '';
+    height: (0.75vh);
+    width: 100vw;
+    background-color: var(--color-primary);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
+
+    &--top {
+      top: 0;
+      bottom: unset;
+    }
+
+    &--left {
+      bottom: 0;
+      left: 0;
+      width: 0.75vh;
+      height: 100vh;
+      transform: scaleY(0);
+      transform-origin: top; 
+    }
+
+    &--right {
+      bottom: 0;
+      right: 0;
+      left: unset;
+      width: 0.75vh;
+      height: 100vh;
+      transform: scaleY(0);
+      transform-origin: bottom; 
+    }
+  }
+}
