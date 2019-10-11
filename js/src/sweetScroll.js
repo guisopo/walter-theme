@@ -1,3 +1,9 @@
+// 1. Move Bars styles to constructor.
+// 2. Add Dragg Icon.
+// 3. Add images when close to viewport.
+// 4. Remove interaction when images out.
+// 5. Manage better listeners.
+
 class SweetScroll {
   constructor(options = {}) {
     this.options = {
@@ -107,6 +113,7 @@ class SweetScroll {
 
   wheel(e) {
     const wheelDelta  = e.deltaY || e.deltaX;
+
     this.data.current += wheelDelta;
   }
 
@@ -155,46 +162,55 @@ class SweetScroll {
 
   getTouchMoveOffsetX(e) {
     e.preventDefault();
-
-    this.offset.x = (this.start.x - e.targetTouches[0].pageX)/10;
+    console.log(this.offset.cached);
+    this.offset.x = Math.round(this.start.x - e.targetTouches[0].pageX);
+    
     this.data.current += this.offset.x;
 
-    this.offset.x = 0;
+    this.offset.cached = this.offset.x;
   }
 
   drag(e) {
     e.preventDefault();
-    // this.data.current -= e.movementX * 4;
-
+    // this.data.current -= e.movementX*4;
+    // console.log(this.offset.cached);
+    
     this.offset.x =  (e.clientX - this.data.mouseDown);
-    this.offset.x = this.offset.x * 100 / this.options.content.offsetWidth;
-    this.data.current -= this.offset.x*5;
+    this.offset.x = Math.round(this.offset.x * 100 / this.options.content.offsetWidth);
+    // this.offset.x = Math.round(this.offset.x * 100 / this.options.content.offsetWidth);
+
+    // if (this.data.mouseDown === e.clientX) return;
+
+    this.data.current -= this.offset.x;
+    console.log(this.data.mouseDown);
   }
 
   addEvents() {
     this.options.content.addEventListener('wheel', this.wheel, { passive: true });
 
-    this.options.content.addEventListener('mousemove', (e) => {
-      if(!this.isDragging) return;
+    // this.options.content.addEventListener('mousemove', (e) => {
+    //   if(!this.isDragging) return;
 
-      this.drag(e);
-    }, { pasive: true });
+    //   this.drag(e);
+    // }, { pasive: true });
     
-    this.options.content.addEventListener('mouseleave', () => {
-      this.isDragging = false;
-    }, { pasive: true });
+    // this.options.content.addEventListener('mouseleave', () => {
+    //   this.isDragging = false;
+    // }, { pasive: true });
     
     
-    this.options.content.addEventListener('mousedown', (e) => {
-      this.isDragging = true;
-      this.data.mouseDown = e.clientX;
-    });
+    // this.options.content.addEventListener('mousedown', (e) => {
+    //   this.isDragging = true;
+    //   this.options.content.removeEventListener( 'wheel', this.wheel, { passive: true });
+    //   this.data.mouseDown = e.clientX;
+    // });
     
-    this.options.content.addEventListener('mouseup', () => {
-      this.isDragging = false;
-    });
+    // this.options.content.addEventListener('mouseup', () => {
+    //   this.isDragging = false;
+    //   this.options.content.addEventListener('wheel', this.wheel, { passive: true });
+    // });
 
-    this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
+    // this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
     this.options.content.addEventListener('resize', this.setBounds);
   }
 
