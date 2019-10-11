@@ -9,19 +9,25 @@
   margin-top: var(--space-s);
   margin-bottom: var(--space-s);
   background-color: black;
+
+  
+    @media ( orientation: landscape ) {
+      width: var(--col-11);
+
+    }
 }
 
 .bullet-container {
   padding-bottom: calc(var(--text-base-size) / 5);
   margin-right: calc(var(--text-base-size) / 2);
   margin-left: calc(var(--text-base-size) / 4);
-}
 
-.bullet {
-  content: '';
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: black;
+  .bullet {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: black;
+  }
 }

@@ -16,6 +16,11 @@
   --col-5: calc( var(--column) * 5 + var(--gutter) * 4 );
   --col-6: calc( var(--column) * 6 + var(--gutter) * 5 );
 
+  @media ( orientation: landscape ) {
+    --col-11: calc( var(--column) * 11 + var(--gutter) * 10 );
+  }
+
+
   // Vertical spacing
   --space-unit: calc( 1em / 2);
   --space-xs:  calc( var(--space-unit) * 1 );
@@ -263,21 +268,68 @@
 
 // ==========
 // TEXTS PAGE
-.content--texts {
-  flex-direction: row;
-  align-items: baseline;
-  margin: 0;
 
-  .content__link {
-    display: inline-block;
-    width: 100%;
-  }
+.site.post-type-archive-texts {
+
+  .content-list--texts {
+    @media ( orientation: landscape ) {
+      display: flex;
+      flex-direction: column;
+      width: var(--col-11);
+      top: 22vh;
+      padding-top: 0;
+      margin-right: 0;
+      margin-left: var(--offset);
+      height: inherit;
+    }
+    .content--texts {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      margin: 0;
+      
+      @media ( orientation: landscape ) {
+        width: 100%;
+        padding: 0;
+      }
+    
+      .content__link {
+        display: inline-block;
+        width: 100%;
   
-  .content__date {
-    margin-left: var(--space-s);
-    align-self: flex-end;
-  }
+        @media ( orientation: landscape ) {
+          padding: 0;
+          // width: auto;
+        }
+      }
+      
+      .content__date {
+        margin-left: var(--space-s);
+        align-self: flex-end;
   
+        @media ( orientation: landscape ) {
+          padding: 0;
+          align-self: unset;
+        }
+      }
+      
+    }
+  }
+
+}
+
+.site.single-texts {
+
+  article.article {
+    @media ( orientation: landscape ) {
+      position: absolute;
+      width: var(--col-11);
+      top: 22vh;
+      padding-top: 0;
+      margin: 0;
+      margin-left: var(--offset);
+    }
+  }
 }
 
 // ====================

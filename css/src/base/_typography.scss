@@ -112,3 +112,12 @@ body {
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.content-list--texts {
+
+  .content__link {
+    @media ( orientation: landscape ) {
+      font-size: var(--text-m);
+    }
+  }
+}
