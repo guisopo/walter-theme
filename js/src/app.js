@@ -1,4 +1,5 @@
 import '../../css/src/main.scss';
+import ajaxLoadMore from './ajaxLoadMore';
 import Doodle from './doodle';
 import SweetScroll from './sweetScroll';
 
@@ -14,6 +15,8 @@ const startApp = () => {
   new Doodle();
   // 2. Add scroll animations
   new SweetScroll(sweetScrollArgs);
+  // 3. 
+  ajaxLoadMore();
 }
 
 
