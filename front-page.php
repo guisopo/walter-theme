@@ -8,13 +8,19 @@
  */
 
 get_header();
+
+global $wp_query;
 ?>
 
 <?php
 if( have_posts() ) :
 ?>
 
-  <ul class="content-list" data-scroll-content>
+  <ul 
+    class="content-list" 
+    data-scroll-content 
+    data-page="<?= get_query_var('paged') ? get_query_var('paged') : 1;?>"
+    data-max="<?= $wp_query->max_num_pages; ?>">
 
     <?php
       while( have_posts() ) : the_post();
@@ -24,6 +30,12 @@ if( have_posts() ) :
       endwhile;
 
     ?>
+
+    <li class="content ">
+
+      <button class="button primary large expanded load-more">More works</button>
+
+    </li>
 
   </ul>
 

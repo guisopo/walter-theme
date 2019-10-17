@@ -27,7 +27,7 @@ function walter_main_custom_query( $query ) {
   // Run only on the homepage
   if ( $query->is_home() && $query->is_main_query() ) {
     $query->set( 'post_type', 'works' );
-    $query->set( 'posts_per_page', 10 );
+    $query->set( 'posts_per_page', 3 );
   }
 }
 // Hook my above function to the pre_get_posts action
