@@ -21,7 +21,8 @@ if ( have_posts() ) :
   <ul 
     class="content-list <?php echo 'content-list--'.$cpt ?>" 
     data-scroll-content
-    data-page="<?= get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;?>"
+    data-cpt= "<?= get_post_type(); ?>"
+    data-page="<?= get_query_var('paged') ?: 1;?>"
     data-max="<?= $wp_query->max_num_pages; ?>"
     >
     
@@ -31,9 +32,6 @@ if ( have_posts() ) :
         get_template_part( 'template-parts/content', get_post_format() );
         
       endwhile;
-
-      previous_posts_link( 'Older Posts' );
-      next_posts_link( 'Newer Posts' );
     ?>
     
   </ul><!-- .content-list -->

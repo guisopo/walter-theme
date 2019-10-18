@@ -18,6 +18,7 @@ if( have_posts() ) :
   <ul 
     class="content-list" 
     data-scroll-content 
+    data-cpt= "<?= get_post_type(); ?>"
     data-page="<?= get_query_var('paged') ?: 1;?>"
     data-max="<?= $wp_query->max_num_pages; ?>">
 
@@ -31,12 +32,6 @@ if( have_posts() ) :
     ?>
 
   </ul>
-
-  <li class="content ">
-
-    <button class="button primary large expanded load-more">More works</button>
-
-  </li>
 
 <?php
 

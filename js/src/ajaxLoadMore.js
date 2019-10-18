@@ -6,11 +6,13 @@ const ajaxLoadMore = (scroll) => {
 
     let current_page = content.dataset.page;
     let max_pages = content.dataset.max;
+    let cpt = content.dataset.cpt;
 
     if(current_page < max_pages) {
 
       let params = new URLSearchParams();
   
+      params.append( 'cpt', cpt );
       params.append( 'action', 'load_more_posts' );
       params.append( 'current_page', current_page );
   
