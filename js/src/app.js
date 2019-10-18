@@ -1,5 +1,5 @@
 import '../../css/src/main.scss';
-import ajaxLoadMore from './ajaxLoadMore';
+import newObserver from './newObserver';
 import Doodle from './doodle';
 import SweetScroll from './sweetScroll';
 
@@ -15,9 +15,9 @@ const startApp = () => {
   new Doodle();
   // 2. Add scroll animations
   const contentScroll = new SweetScroll(sweetScrollArgs);
-  // 3. 
-  ajaxLoadMore(contentScroll);
+  // 3. Start to observe
+  newObserver(contentScroll);
+ 
 }
-
 
 window.addEventListener('load', startApp, false);

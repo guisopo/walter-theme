@@ -20,9 +20,8 @@ const ajaxLoadMore = (scroll) => {
           content.insertAdjacentHTML("beforeend", res.data.data);
           content.dataset.page++;
           
-          let baseUrl = '';
           let getUrl = window.location;
-          baseUrl = `${getUrl.protocol}//${getUrl.host}/page/${content.dataset.page}`;
+          let baseUrl = `${getUrl.protocol}//${getUrl.host}/page/${content.dataset.page}`;
           window.history.pushState('', '', baseUrl);
   
           scroll.setBounds();

@@ -11,6 +11,7 @@ require get_template_directory().'/inc/cleanup.php';
 require get_template_directory().'/inc/enqueue.php';
 require get_template_directory().'/inc/menu-management.php';
 require get_template_directory().'/inc/walter-template-helpers.php';
+require get_template_directory().'/inc/ajax-post-load.php';
 
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 
