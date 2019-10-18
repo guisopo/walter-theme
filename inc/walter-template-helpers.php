@@ -24,8 +24,8 @@ function walter_site_name() {
  * @see pre_get_posts
  */
 function walter_main_custom_query( $query ) {
-  // Run only on the homepage
-  if ( $query->is_home() && $query->is_main_query() ) {
+  // Run only on the homepages
+  if ( ! is_admin() && $query->is_home() && $query->is_main_query() ) {
     $query->set( 'post_type', 'works' );
     $query->set( 'posts_per_page', 3 );
   }
