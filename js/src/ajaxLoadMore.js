@@ -23,7 +23,7 @@ const ajaxLoadMore = (scroll) => {
           content.dataset.page++;
           
           let getUrl = window.location;
-          let baseUrl = `${getUrl.protocol}//${getUrl.host}/page/${content.dataset.page}`;
+          let baseUrl = `${getUrl.protocol}//${getUrl.host}${getUrl.pathname}page/${content.dataset.page}`;
           window.history.pushState('', '', baseUrl);
   
           scroll.setBounds();
