@@ -125,6 +125,7 @@ class SweetScroll {
       width: window.innerWidth,
       height: window.innherHeight
     };
+    console.log(this.options.content.offsetWidth);
     this.contentWidth = this.options.content.offsetWidth - this.windowSize.width;
   }
 
@@ -204,7 +205,7 @@ class SweetScroll {
     }, { pasive: true });
 
     // this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
-    this.options.content.addEventListener('resize', this.setBounds);
+    window.addEventListener('resize', this.setBounds);
   }
 
   init() {

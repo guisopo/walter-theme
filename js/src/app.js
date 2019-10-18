@@ -14,9 +14,9 @@ const startApp = () => {
   // 1. Create Doodle
   new Doodle();
   // 2. Add scroll animations
-  new SweetScroll(sweetScrollArgs);
+  const contentScroll = new SweetScroll(sweetScrollArgs);
   // 3. 
-  ajaxLoadMore();
+  ajaxLoadMore(contentScroll);
 }
 
 

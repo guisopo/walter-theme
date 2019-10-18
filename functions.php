@@ -30,6 +30,7 @@ function load_more_posts() {
 
     $next_page = $_POST['current_page'] + 1;
     $query = new WP_Query([
+        'post_type' => 'works',
         'posts_per_page' => 3,
         'paged' => $next_page
     ]);
@@ -38,7 +39,7 @@ function load_more_posts() {
 
         ob_start();
         
-        while($query->have_posts()) : $query->the_posts();
+        while($query->have_posts()) : $query->the_post();
 
             get_template_part( 'template-parts/content', get_post_format() );
         

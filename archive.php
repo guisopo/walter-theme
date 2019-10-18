@@ -8,6 +8,8 @@
  */
 
 get_header();
+global $wp_query;
+
 ?>
 
 <?php 
@@ -16,7 +18,12 @@ if ( have_posts() ) :
   $cpt = get_post_type( get_the_ID() );
 ?>
 
-  <ul class="content-list <?php echo 'content-list--'.$cpt ?>" data-scroll-content>
+  <ul 
+    class="content-list <?php echo 'content-list--'.$cpt ?>" 
+    data-scroll-content
+    data-page="<?= get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;?>"
+    data-max="<?= $wp_query->max_num_pages; ?>"
+    >
     
     <?php
       while ( have_posts() ) : the_post();
