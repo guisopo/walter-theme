@@ -1,5 +1,4 @@
 import '../../css/src/main.scss';
-import newObserver from './newObserver';
 import Doodle from './doodle';
 import SweetScroll from './sweetScroll';
 
@@ -14,10 +13,7 @@ const startApp = () => {
   // 1. Create Doodle
   new Doodle();
   // 2. Add scroll animations
-  const contentScroll = new SweetScroll(sweetScrollArgs);
-  // 3. Start to observe
-  newObserver(contentScroll);
- 
+  new SweetScroll(sweetScrollArgs);
 }
 
 window.addEventListener('load', startApp, false);
