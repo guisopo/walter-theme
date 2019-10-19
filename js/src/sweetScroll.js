@@ -10,9 +10,9 @@ class SweetScroll {
       content: options.content,
       scrollBar: options.scrollBar || false,
       lerpFactor: options.lerpFactor || 0.1,
-      scaleFactor: options.scaleFactor || 0.15,
-      skewFactor: options.skewFactor || 2,
-      dragSpeed: options.skewFactor || 2
+      scaleFactor: options.scaleFactor || 0.1,
+      skewFactor: options.skewFactor || 0.9,
+      dragSpeed: options.dragSpeed || 2
     }
 
     this.scrollBarBottom = this.options.scrollBar[0];
@@ -61,9 +61,7 @@ class SweetScroll {
         current: 0,
         setStyle: () => `skewX(${this.animatedStyles.skewX.current}deg)`,
         setValue: () => {
-          const fromValue = this.options.skewFactor * -1;
-          const toValue = this.options.skewFactor;
-          return Math.floor(this.map(this.scrollingSpeed, -1500, 1500, fromValue, toValue));
+          return (this.acc * this.options.skewFactor);
         }
       },
       skewY: {
@@ -85,7 +83,7 @@ class SweetScroll {
         setValue: () => {
           const fromValue = this.options.scaleFactor * -1;
           const toValue = this.options.scaleFactor;
-          return 1 - Math.abs(Math.floor((this.map(this.scrollingSpeed, -1500, 1500, fromValue, toValue)) * 1000) / 1000);
+          return 1 - Math.abs(Math.floor((this.map(this.acc, -1.5, 1.5, fromValue, toValue)) * 10000) / 10000);
         }
       }
     };
@@ -125,7 +123,7 @@ class SweetScroll {
       width: window.innerWidth,
       height: window.innherHeight
     };
-    console.log(this.options.content.offsetWidth);
+
     this.contentWidth = this.options.content.offsetWidth - this.windowSize.width;
   }
 
@@ -133,11 +131,12 @@ class SweetScroll {
     this.data.current = this.clamp(this.data.current, 0, this.contentWidth);
 
     this.data.last = this.lerp(this.data.last, this.data.current, this.options.lerpFactor);
-    this.data.last = Math.floor(this.data.last * 1000) / 1000;
+    this.data.last = Math.floor(this.data.last * 10000) / 10000;
 
     this.scrollingSpeed = this.data.current - this.data.last;
+    this.acc = Math.floor(this.scrollingSpeed/this.contentWidth * 10000) / 1000;
+
     this.options.content.style.transform = this.styles;
-    
     // this.options.scrollBar.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
     this.scrollBarBottom.style.transform = `scaleX(${this.data.last/this.contentWidth})`;
     this.scrollBarTop.style.transform = `translateX(100vw) scale(-1, 1) scaleX(${this.data.last/this.contentWidth})`;
