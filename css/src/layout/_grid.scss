@@ -64,7 +64,7 @@
       padding-left: 0;
       display: flex;
       align-items: center;
-      overflow: scroll;
+      overflow: hidden;
     }
 
     .content-list, 
@@ -87,7 +87,6 @@
         left: 0;
         margin: 0;
         padding-top: var(--space-m);
-        padding-top: 0;
         display: flex;
         // white-space: nowrap;
         transform: translate3d(0, 0, 0);
@@ -100,6 +99,17 @@
     .article {
       margin:  0 var(--column);
       margin-bottom: var(--space-xl);
+    }
+  }
+}
+
+.page,
+.single-texts {
+
+  .site__main {
+  
+    @media ( orientation: landscape ) {
+      overflow: scroll;
     }
   }
 }
