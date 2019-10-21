@@ -17,7 +17,7 @@
 
   <a class="content__link" href=<?php echo esc_url( get_permalink() ); ?>>
     
-    <p><?php the_title(); ?></p>
+    <?php the_title(); ?>
 
   </a>
   

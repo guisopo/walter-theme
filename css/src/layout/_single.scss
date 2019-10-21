@@ -171,6 +171,7 @@
 .site.single-texts {
 
   article.article {
+    
     @media ( orientation: landscape ) {
       position: absolute;
       width: var(--col-11);
@@ -178,6 +179,11 @@
       padding-top: 0;
       margin: 0;
       margin-left: var(--offset);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      overflow-wrap: break-word;
     }
   }
 } 

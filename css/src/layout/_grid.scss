@@ -18,6 +18,7 @@
 
   @media ( orientation: landscape ) {
     --col-11: calc( var(--column) * 11 + var(--gutter) * 10 );
+    --col-15: calc( var(--column) * 15 + var(--gutter) * 14 );
   }
 
 

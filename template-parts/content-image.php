@@ -13,7 +13,7 @@ if ( has_post_thumbnail( $post->ID ) ) :
   $image_orientation = give_image_orientation( get_post_thumbnail_id($post->ID) );
 ?>
 
-<li class="content <?php echo 'content--'.$image_orientation ?>">
+<li class="content content--image <?php echo 'content--'.$image_orientation ?>">
 
   <a class="content__link" href=<?php echo esc_url( get_permalink() ); ?>>
     
