@@ -182,7 +182,8 @@ class SweetScroll {
     this.options.content.addEventListener('mousedown', (e) => {
       this.isDragging = true;
       this.options.content.removeEventListener( 'wheel', this.wheel, { passive: true });
-      this.data.mouseDown = e.clientX;
+      this.data.mouseDown = e.clientX ;
+      this.data.mouseUp = this.data.current;
     });
 
     this.options.content.addEventListener('mousemove', (e) => {
