@@ -1,7 +1,5 @@
 // 1. Move Bars styles to constructor.
 // 2. Add Dragg Icon.
-// 3. Add images when close to viewport.
-// 4. Remove interaction when images out.
 // 5. Manage better listeners.
 
 class SweetScroll {
@@ -10,9 +8,9 @@ class SweetScroll {
       content: options.content,
       scrollBar: options.scrollBar || false,
       lerpFactor: options.lerpFactor || 0.1,
-      scaleFactor: options.scaleFactor || 0.1,
-      skewFactor: options.skewFactor || 0.9,
-      dragSpeed: options.dragSpeed || 2
+      scaleFactor: options.scaleFactor || 0.4,
+      skewFactor: options.skewFactor || 0.75,
+      dragSpeed: options.dragSpeed || 4
     }
 
     this.scrollBarBottom = this.options.scrollBar[0];
@@ -28,14 +26,11 @@ class SweetScroll {
       last: 0,
       mouseDown: 0,
       mouseUp: 0,
-      cache: 0
+      scrollingSpeed: 0
     }
 
     this.isDragging = false;
 
-    this.renderedStyles = ''
-    this.scrollingSpeed = 0;
-    this.a = 0;
     this.animatedStyles = {
       translateX: {
         animate: true,
@@ -61,7 +56,7 @@ class SweetScroll {
         current: 0,
         setStyle: () => `skewX(${this.animatedStyles.skewX.current}deg)`,
         setValue: () => {
-          return (this.acc * this.options.skewFactor);
+          return this.clamp(this.data.scrollingSpeed, - this.options.skewFactor, this.options.skewFactor);
         }
       },
       skewY: {
@@ -72,7 +67,7 @@ class SweetScroll {
         setValue: () => {
           const fromValue = this.options.skewFactor * -1;
           const toValue = this.options.skewFactor;
-          return Math.floor(this.map(this.scrollingSpeed, -1500, 1500, fromValue, toValue));
+          return Math.floor(this.map(this.data.scrollingSpeed, -1500, 1500, fromValue, toValue));
         }
       },
       scale: {
@@ -81,9 +76,9 @@ class SweetScroll {
         current: 1,
         setStyle: () => `scale(${this.animatedStyles.scale.current})`,
         setValue: () => {
-          const fromValue = this.options.scaleFactor * -1;
+          const fromValue = 0;
           const toValue = this.options.scaleFactor;
-          return 1 - Math.abs(Math.floor((this.map(this.acc, -1.5, 1.5, fromValue, toValue)) * 10000) / 10000);
+          return 1 - (this.clamp(Math.abs(this.data.scrollingSpeed), fromValue, toValue * 10)/100);
         }
       }
     };
@@ -133,8 +128,7 @@ class SweetScroll {
     this.data.last = this.lerp(this.data.last, this.data.current, this.options.lerpFactor);
     this.data.last = Math.floor(this.data.last * 10000) / 10000;
 
-    this.scrollingSpeed = this.data.current - this.data.last;
-    this.acc = Math.floor(this.scrollingSpeed/this.contentWidth * 10000) / 1000;
+    this.data.scrollingSpeed = Math.floor(this.data.current - this.data.last) / 100;
 
     this.options.content.style.transform = this.styles;
     // this.options.scrollBar.style.transform = `scaleX(${this.data.current/this.contentWidth})`;
