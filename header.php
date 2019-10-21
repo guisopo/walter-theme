@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/bkd1ksv.css">
 </head>
 
-<body <?php body_class( "site" ); ?>>
+<body style="opacity: 0" <?php body_class( "site" ); ?>>
 <?php wp_body_open(); ?>
 
   <header class="site__header">

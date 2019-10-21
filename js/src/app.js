@@ -9,7 +9,9 @@ const sweetScrollArgs = {
 };
 
 const startApp = () => {
-
+  console.log(document.body);
+  document.body.style.transition = 'opacity 0.3s ease-in';
+  document.body.style.opacity = '1';
   // 1. Create Doodle
   new Doodle();
   // 2. Add scroll animations
