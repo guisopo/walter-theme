@@ -1,6 +1,7 @@
 import '../../css/src/main.scss';
 import Doodle from './doodle';
 import SweetScroll from './sweetScroll';
+import animate from './loadAnimation';
 
 const sweetScrollArgs = {
   content: document.querySelector('[data-scroll-content]'),
@@ -9,13 +10,12 @@ const sweetScrollArgs = {
 };
 
 const startApp = () => {
-  console.log(document.body);
-  document.body.style.transition = 'opacity 0.3s ease-in';
-  document.body.style.opacity = '1';
   // 1. Create Doodle
   new Doodle();
   // 2. Add scroll animations
   new SweetScroll(sweetScrollArgs);
+  // 3. Animate
+  animate();
 }
 
 window.addEventListener('load', startApp, false);
