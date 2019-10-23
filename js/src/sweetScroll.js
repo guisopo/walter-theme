@@ -8,7 +8,7 @@ class SweetScroll {
       content: options.content,
       scrollBar: options.scrollBar || false,
       lerpFactor: options.lerpFactor || 0.1,
-      scaleFactor: options.scaleFactor || 0.4,
+      scaleFactor: options.scaleFactor || 0.3,
       skewFactor: options.skewFactor || 0.75,
       dragSpeed: options.dragSpeed || 4
     }
