@@ -10,12 +10,12 @@ const sweetScrollArgs = {
 };
 
 const startApp = () => {
-  animate();
+  // 3. Animate
+  animateLoad();
   // 1. Create Doodle
   new Doodle(); 
   // 2. Add scroll animations
   new SweetScroll(sweetScrollArgs);
-  // 3. Animate
 }
 
 window.addEventListener('load', startApp, false);
