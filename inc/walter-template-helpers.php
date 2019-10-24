@@ -19,7 +19,7 @@ function walter_site_name() {
   echo $output;
 }
 /**
- * Modifi main query to show just works post type.
+ * Modify main query to show just works post type.
  *
  * @see pre_get_posts
  */
@@ -28,12 +28,12 @@ function walter_main_custom_query( $query ) {
   if ( ! is_admin() && $query->is_home() && $query->is_main_query() ) {
     $query->set( 'post_type', 'works' );
     $query->set( 'posts_per_page', -1 );
-    $query->set( 'post_status', 'publish' );
-    // $query->set( 'update_post_meta_cache', false );   //tells not to run query for post meta
-    $query->set( 'update_post_term_cache', false );   //tells not to run query for terms, remove if terms required
-    $query->set( 'ignore_sticky_posts', true );       //ignores sticky posts  
-    $query->set( 'no_found_rows', true );             //tells not to count posts - remove if pagination required
-    // $query->set( 'cache_results', false );            //tells not to count posts - remove if pagination required
+    $query->set( 'post_status', 'p  ublish' );
+    // $query->set( 'update_post_meta_cache', false );  //tells not to run query for post meta
+    $query->set( 'update_post_term_cache', false );     //tells not to run query for terms, remove if terms required
+    $query->set( 'ignore_sticky_posts', true );         //ignores sticky posts  
+    $query->set( 'no_found_rows', true );               //tells not to count posts - remove if pagination required
+    // $query->set( 'cache_results', false );           //tells not to count posts - remove if pagination required
   }
 }
 // Hook my above function to the pre_get_posts action
