@@ -21,7 +21,7 @@ class Doodle {
   checker(variable) {
     // 1. Init just if variable exists
     if(typeof variable === 'undefined' || variable === null) {
-      return false
+      return false;
     };
 
     this.init();

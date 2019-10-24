@@ -1,7 +1,7 @@
 import '../../css/src/main.scss';
 import Doodle from './doodle';
 import SweetScroll from './sweetScroll';
-import animate from './loadAnimation';
+import animateLoad from './loadAnimation';
 
 const sweetScrollArgs = {
   content: document.querySelector('[data-scroll-content]'),
