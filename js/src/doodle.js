@@ -28,14 +28,16 @@ class Doodle {
   }
 
   addEvents() {
-    window.addEventListener('resize', this.init);
-    window.addEventListener('orientationchange', this.init);
+    window.addEventListener('resize', () => this.init());
+    window.addEventListener('orientationchange', () => this.init());
   }
 
   appendSvg(element) {
-    element.insertAdjacentHTML('beforeend', this.svg);
-    // Select SVG once appended to element
-    this.doodle = document.querySelector('.doodle');
+    if(typeof this.doodle === 'undefined' || this.doodle === null) {
+      element.insertAdjacentHTML('beforeend', this.svg);
+      // Select SVG once appended to element
+      this.doodle = document.querySelector('.doodle');
+    }
   }
 
   getPathLength() {
@@ -57,21 +59,12 @@ class Doodle {
   }
 
   setSvgPosition() {
-    console.log('a');
     // 1. Get elements position
     const activeRect = this.itemActive.getBoundingClientRect();
     const svgRect = this.doodle.getBoundingClientRect();
     // 2. Calculate Doodle displacement 
     const translateX = (svgRect.width - activeRect.width)/2;
     const translateY = -(svgRect.height - activeRect.height)/2;
-    // 3. Apply displacement
-    
-    // 3.1 Doesn't translate properly in chrome android and chrome ios
-    // this.svg.style.transform = `translate3d(
-    //   ${translateX}px,
-    //   ${translateY}px,
-    //   0
-    // )`;
     // 3.2 Works in every scenario
     this.doodle.style.right = -translateX + 'px';
     this.doodle.style.top = translateY + 'px';
@@ -88,6 +81,7 @@ class Doodle {
     this.appendSvg(this.itemActive);
     this.setSvgInitialStyles();
     this.setSvgPosition();
+
     this.animateSvg();
 
     this.addEvents();
