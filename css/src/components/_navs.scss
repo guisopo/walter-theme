@@ -35,9 +35,11 @@
     }
 
     svg {
+      transform-origin: center center; 
+      transform: rotateZ(90deg) translate(25%, -25%) ;
+      
       @media ( orientation: landscape ) {
-        transform-origin: center center; 
-        transform: translate(-50%, -25%) rotateZ(90deg);
+        transform: initial;
       }
     }
   }
