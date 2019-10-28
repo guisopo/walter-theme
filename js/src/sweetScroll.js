@@ -21,6 +21,10 @@ class SweetScroll {
     this.start = {x:0,y:0};
     this.offset = {x:0,y:0};
 
+    this.initialTouchPos;
+    this.lastTouchPos;
+    this.rafPending;
+
     this.data = {
       current: 0,
       last: 0,
@@ -91,7 +95,7 @@ class SweetScroll {
   }
 
   bindAll() {
-    ['wheel', 'drag', 'getTouchX', 'getTouchMoveOffsetX', 'run', 'setBounds']
+    ['wheel', 'drag', 'run', 'setBounds', 'handleGestureStart', 'handleGestureMove', 'handleGestureEnd']
       .forEach( fn => this[fn] = this[fn].bind(this));
   }
 
@@ -149,56 +153,129 @@ class SweetScroll {
     requestAnimationFrame(() => this.run());
   }
 
-  getTouchX(e) {
-    this.start.x = e.targetTouches[0].pageX;
-
-    this.options.content.addEventListener('touchmove', this.getTouchMoveOffsetX, { passive: true });
-    // this.option.content.addEventListener('touchend', this.getTouchMoveOffsetX, { passive: true });
-    // this.option.content.addEventListener('touchcancel', this.getTouchMoveOffsetX, { passive: true });
-  }
-
-  getTouchMoveOffsetX(e) {
-
-    this.offset.x = Math.round(this.start.x - e.targetTouches[0].pageX);
-
-    this.data.current = -this.offset.x;
-  }
-
   drag(e) {
     e.preventDefault();
 
-    this.data.current = this.data.mouseUp - ((e.clientX - this.data.mouseDown) * this.options.dragSpeed);
+    // this.data.current = this.data.mouseUp - ((e.clientX - this.data.mouseDown) * this.options.dragSpeed);
+    this.data.current = this.lastTouchPos - ((e.clientX - this.initialTouchPos.x) * this.options.dragSpeed);
+    console.log('current', this.data.current);
+  }
+
+  getGesturePointFromEvent(e) {
+    // this.isDragging = true;
+    // this.data.mouseDown = e.clientX ;
+    // this.data.mouseUp = this.data.current;
+  
+    const point = {};
+
+    if(e.targetTouches) {
+      // Prefer Touch Events
+      point.x = e.targetTouches[0].clientX;
+      point.y = e.targetTouches[0].clientY;
+    } else {
+      // Either Mouse event or Pointer Event
+      point.x = e.clientX;
+      point.y = e.clientY;
+    }
+
+    return point;
+  }
+
+
+  handleGestureStart(e) {
+    e.preventDefault();
+
+    this.options.content.removeEventListener( 'wheel', this.wheel, { passive: true });
+
+    if(e.touches && e.touches.length > 1) {
+      return;
+    }
+
+    // Add the move and end listeners
+    if (window.PointerEvent) {
+      e.target.setPointerCapture(e.pointerId);
+    } else {
+      // Add Mouse Listeners
+      document.addEventListener('mousemove', this.handleGestureMove, true);
+      document.addEventListener('mouseup', this.handleGestureEnd, true);
+    }
+
+    this.initialTouchPos = this.getGesturePointFromEvent(e);
+    this.lastTouchPos = this.data.current;
+    console.log('init', this.initialTouchPos.x);
+    this.options.content.style.transition = 'initial';
+  }
+
+  handleGestureMove(e) {
+    e.preventDefault();
+
+    // if(!this.isDragging) return;
+    // this.options.content.classList.add("dragged");
+    // this.drag(e);
+  
+    if(!this.initialTouchPos) {
+      return;
+    }
+  
+    this.drag(e);
+  }
+
+  handleGestureEnd(e) {
+    e.preventDefault();
+
+    // this.isDragging = false;
+    // this.options.content.classList.remove("dragged");
+    // this.data.mouseUp = this.data.current;
+    this.options.content.addEventListener('wheel', this.wheel, { passive: true });
+    this.lastTouchPos = this.data.current;
+    console.log('last', this.lastTouchPos);
+
+    if(e.touches && e.touches.length > 0) {
+      return;
+    }
+  
+    this.rafPending = false;
+  
+    // Remove Event Listeners
+    if (window.PointerEvent) {
+      e.target.releasePointerCapture(e.pointerId);
+    } else {
+      // Remove Mouse Listeners
+      document.removeEventListener('mousemove', this.handleGestureMove, true);
+      document.removeEventListener('mouseup', this.handleGestureEnd, true);
+    }
+  
+    // updateSwipeRestPosition();
+  
+    this.initialTouchPos = null;
   }
 
   addEvents() {
+    if( window.PointerEvent) {
+      // Add Pointer Event Listener
+      this.options.content.addEventListener('pointerdown', this.handleGestureStart, { passive: true });
+      this.options.content.addEventListener('pointermove', this.handleGestureMove, { passive: true });
+      this.options.content.addEventListener('pointerup', this.handleGestureEnd, { passive: true });
+      this.options.content.addEventListener('pointercancel', this.handleGestureEnd, { passive: true });
+    } else {
+      // Add Touch Listener
+      this.options.content.addEventListener('touchstart', this.handleGestureStart, { passive: true });
+      this.options.content.addEventListener('touchmove', this.handleGestureMove, { passive: true });
+      this.options.content.addEventListener('touchend', this.handleGestureEnd, { passive: true });
+      this.options.content.addEventListener('touchcancel', this.handleGestureEnd, { passive: true });
+
+      // Add Mouse Listener
+      this.options.content.addEventListener('mousedown', this.handleGestureStart, { passive: true });
+    }
+
     this.options.content.addEventListener('wheel', this.wheel, { passive: true });
-
-    this.options.content.addEventListener('mousedown', (e) => {
-      this.isDragging = true;
-      this.options.content.removeEventListener( 'wheel', this.wheel, { passive: true });
-      this.data.mouseDown = e.clientX ;
-      this.data.mouseUp = this.data.current;
-    });
-
-    this.options.content.addEventListener('mousemove', (e) => {
-      if(!this.isDragging) return;
-      this.options.content.classList.add("dragged");
-      this.drag(e);
-    }, { pasive: true });
     
-    this.options.content.addEventListener('mouseup', (e) => {
-      this.isDragging = false;
-      this.options.content.classList.remove("dragged");
-      this.data.mouseUp = this.data.current;
-      this.options.content.addEventListener('wheel', this.wheel, { passive: true });
-    });
     
-    this.options.content.addEventListener('mouseleave', () => {
-      this.isDragging = false;
-      this.options.content.classList.remove("dragged");
-    }, { pasive: true });
+    // this.options.content.addEventListener('mouseleave', () => {
+    //   this.isDragging = false;
+    //   this.options.content.classList.remove("dragged");
+    // }, { pasive: true });
 
-    // this.options.content.addEventListener('touchstart', this.getTouchX, { passive: true });
     window.addEventListener('resize', this.setBounds);
   }
 
