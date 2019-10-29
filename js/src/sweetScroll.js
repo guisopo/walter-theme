@@ -158,7 +158,6 @@ class SweetScroll {
 
     // this.data.current = this.data.mouseUp - ((e.clientX - this.data.mouseDown) * this.options.dragSpeed);
     this.data.current = this.lastTouchPos - ((e.clientX - this.initialTouchPos.x) * this.options.dragSpeed);
-    console.log('current', this.data.current);
   }
 
   getGesturePointFromEvent(e) {
@@ -202,7 +201,7 @@ class SweetScroll {
 
     this.initialTouchPos = this.getGesturePointFromEvent(e);
     this.lastTouchPos = this.data.current;
-    console.log('init', this.initialTouchPos.x);
+
     this.options.content.style.transition = 'initial';
   }
 
@@ -211,7 +210,6 @@ class SweetScroll {
 
     // if(!this.isDragging) return;
     // this.options.content.classList.add("dragged");
-    // this.drag(e);
   
     if(!this.initialTouchPos) {
       return;
@@ -228,7 +226,6 @@ class SweetScroll {
     // this.data.mouseUp = this.data.current;
     this.options.content.addEventListener('wheel', this.wheel, { passive: true });
     this.lastTouchPos = this.data.current;
-    console.log('last', this.lastTouchPos);
 
     if(e.touches && e.touches.length > 0) {
       return;
@@ -269,12 +266,6 @@ class SweetScroll {
     }
 
     this.options.content.addEventListener('wheel', this.wheel, { passive: true });
-    
-    
-    // this.options.content.addEventListener('mouseleave', () => {
-    //   this.isDragging = false;
-    //   this.options.content.classList.remove("dragged");
-    // }, { pasive: true });
 
     window.addEventListener('resize', this.setBounds);
   }
