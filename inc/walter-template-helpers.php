@@ -28,7 +28,7 @@ function walter_main_custom_query( $query ) {
   if ( ! is_admin() && $query->is_home() && $query->is_main_query() ) {
     $query->set( 'post_type', 'works' );
     $query->set( 'posts_per_page', -1 );
-    $query->set( 'post_status', 'p  ublish' );
+    $query->set( 'post_status', 'publish' );
     // $query->set( 'update_post_meta_cache', false );  //tells not to run query for post meta
     $query->set( 'update_post_term_cache', false );     //tells not to run query for terms, remove if terms required
     $query->set( 'ignore_sticky_posts', true );         //ignores sticky posts  
