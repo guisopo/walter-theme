@@ -146,11 +146,6 @@
           display: flex;
           justify-content: space-between;
           width: calc(100% - var(--column) * 2);
-
-          .work__title {
-            font-style: italic;
-            font-weight: 700;
-          }
   
           @media ( orientation: landscape ) {
             width: 100%;

@@ -113,6 +113,11 @@ body {
   
   .work__info {
     font-size: var(--text-l);
+
+    .work__title {
+      font-style: italic;
+      font-weight: 700;
+    }
   }
 }
 
