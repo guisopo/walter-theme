@@ -54,11 +54,32 @@
   margin-top: var(--space-l);
   margin-bottom: var(--space-s);
 
+  .posts-nav {
+    .link__next {
+      margin-left: 10px;
+    }
+  }
+
   @media ( orientation: landscape ) {
     position: fixed;
-    flex-direction: column;
+    width: var(--col-24);
+    flex-direction: row;
     bottom: var(--space-s);
     left: var(--offset);
+    
+    .posts-nav {
+      .link__rotated {
+        display: inline-block;
+        transform: rotateZ(90deg) translateX(calc(var(--space-s) * -1.25));
+        transform-origin: top;
+      }
 
+      .link__next {
+        display: inline-block;
+        margin-left: unset;
+        transform: translateX(calc(var(--space-s) * -0.75));
+      }
+    }
   }
+
 }

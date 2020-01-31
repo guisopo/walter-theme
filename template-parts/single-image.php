@@ -16,7 +16,7 @@ $meta = walter_get_post_meta( get_the_ID() );
 
 	<figure class="work__image-container">
 
-		<?php the_post_thumbnail( 'medium' ); ?>
+		<?php the_post_thumbnail( 'full' ); ?>
 		<?php
 			if( !empty($meta) ) {
 				?>
@@ -28,12 +28,17 @@ $meta = walter_get_post_meta( get_the_ID() );
 				</figcaption>
 				<?php
 			}
-		?>
+		?>	
 	</figure>
 
 	<nav class="work-nav">
-		<a href="<?php echo esc_url( home_url( '/') ); ?>">Close</a>
-		<?php previous_post_link( '%link', 'Next work'); ?>
+		<div class="posts-nav">
+			<?php next_post_link( '%link', 'Prev'); ?>
+			<?php previous_post_link( '%link', 'Next'); ?>
+		</div>
+		<div class="close-link">
+			<a href="<?php echo esc_url( home_url( '/') ); ?>">Close</a>
+		</div>
 	</nav>
 	
 </article>
