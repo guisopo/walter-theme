@@ -88,6 +88,18 @@
       .content__data:not(:last-child) {
         margin-bottom: var(--space-xs);
       }
+
+    }
+    
+    @media ( orientation: landscape) {
+      .work__info {
+        align-self: unset;
+        text-align: left;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     }
   }
 }
