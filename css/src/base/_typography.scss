@@ -117,6 +117,10 @@ body {
     .work__title {
       font-style: italic;
       font-weight: 700;
+
+      @media ( orientation: landscape ) {
+        font-weight: unset;
+      }
     }
   }
 }
