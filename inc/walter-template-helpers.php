@@ -29,6 +29,9 @@ function walter_main_custom_query( $query ) {
     $query->set( 'post_type', 'works' );
     $query->set( 'posts_per_page', -1 );
     $query->set( 'post_status', 'publish' );
+    $query->set( 'meta_key', '_avant_folio_date_completed_key' );
+    $query->set( 'orderby', 'meta_value_num' );
+    $query->set( 'order', 'DESC');
     // $query->set( 'update_post_meta_cache', false );  //tells not to run query for post meta
     $query->set( 'update_post_term_cache', false );     //tells not to run query for terms, remove if terms required
     $query->set( 'ignore_sticky_posts', true );         //ignores sticky posts  
