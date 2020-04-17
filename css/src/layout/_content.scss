@@ -8,13 +8,6 @@
   margin-bottom: var(--space-l);
 
   @media ( orientation: landscape ) {
-    // display:flex;
-    // position: relative;
-    // width: 50vw;
-    // height: 100%;
-    // margin-left: 0;
-    // margin-bottom: 0;
-    // padding: 30vh 10vh;
     position: relative;
     display: block;
     margin-left: 0;
@@ -29,8 +22,6 @@
     @media ( orientation: landscape ) {
       position: relative;
       overflow: hidden;
-      // width: calc(50vw - 20vh);
-      // height: calc((50vw - 20vh)*21/29.7);
     }
   }
 
@@ -54,8 +45,6 @@
       z-index: -1;
 
       &--portrait {
-        // margin-right: 10vh;
-        // right: 0;
         width: calc(100% - 20vh);
       }
 
@@ -78,17 +67,14 @@
       margin-right: 0;
 
       .content__link {
-        // height: calc(60vh);
-        // width: calc((60vh)*21/29.7);
-        height: calc(60vh);
-        width: calc((60vh)*21/29.7);
+        height: calc(55vh);
+        width: calc((55vh)*21/29.7);
 
         .content__image-container {
           height: 100%;
           width: inherit;
     
           img {
-            // position: absolute;
             height: 100%;
             width: 100%;
             object-fit: cover;
@@ -104,15 +90,14 @@
   &--landscape {
     @media ( orientation: landscape ) {
       .content__link {
-        width: calc(52vh);
-        height: calc((52vh)*21/29.7);
+        width: calc(78vh);
+        height: calc((78vh)*21/29.7);
 
         .content__image-container {
           width: 100%;
           height: inherit;
     
           img {
-            // position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;
