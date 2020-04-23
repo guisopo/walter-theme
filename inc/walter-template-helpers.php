@@ -24,13 +24,13 @@ function walter_site_name() {
  * @see pre_get_posts
  */
 function walter_main_custom_query( $query ) {
-  // Run only on the homepages
+  // Run only in the homepages
   if ( ! is_admin() && $query->is_home() && $query->is_main_query() ) {
     $query->set( 'post_type', 'works' );
     $query->set( 'posts_per_page', -1 );
     $query->set( 'post_status', 'publish' );
     $query->set( 'meta_key', '_avant_folio_date_completed_key' );
-    $query->set( 'orderby', 'meta_value_num' );
+    $query->set( 'orderby', array( 'meta_value_num' => 'DESC', 'post_date' => 'DESC') );
     $query->set( 'order', 'DESC');
     // $query->set( 'update_post_meta_cache', false );  //tells not to run query for post meta
     $query->set( 'update_post_term_cache', false );     //tells not to run query for terms, remove if terms required

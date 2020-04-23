@@ -33,22 +33,3 @@ function walter_load_css() {
 
 add_action( 'wp_enqueue_scripts','walter_admin_scripts' );
 add_action( 'wp_enqueue_scripts', 'walter_load_css' );
-
-
-// <img 
-//   src="http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018.jpg" 
-//   data-aspectratio="2862/3873" 
-//   data-src="http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018.jpg" 
-//   class="attachment-full size-full wp-post-image lazyloaded" 
-//   alt="" 
-//   data-srcset="http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018.jpg 2862w, 
-//                http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018-222x300.jpg 222w, 
-//                http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018-768x1039.jpg 768w, 
-//                http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018-757x1024.jpg 757w" 
-//   sizes="(max-width: 2862px) 100vw, 2862px" 
-//   srcset="http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018.jpg 2862w, 
-//           http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018-222x300.jpg 222w, 
-//           http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018-768x1039.jpg 768w, 
-//           http://mirjamwalter.local/wp-content/uploads/2019/10/15-UNTITLED-145x200-cm-mixed-media-on-cotton-2018-757x1024.jpg 757w" 
-//   width="2862" height="3873"
-// >

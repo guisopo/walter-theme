@@ -6,11 +6,11 @@ const path = require("path");
 const configureDevServer = () => {
 	return {
 		contentBase: path.join(__dirname, 'dist'),
-		host: 'localhost',
+		host: '0.0.0.0',
+		port: 8080,
 		hot: true,
 		inline: true,
 		overlay: true,
-		port: 8080,
 		compress: true,
     disableHostCheck: true,
 	};
