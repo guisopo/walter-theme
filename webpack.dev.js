@@ -6,7 +6,7 @@ const path = require("path");
 const configureDevServer = () => {
 	return {
 		contentBase: path.join(__dirname, 'dist'),
-		host: '0.0.0.0',
+		host: 'localhost',
 		port: 8080,
 		hot: true,
 		inline: true,
