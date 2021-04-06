@@ -9,13 +9,13 @@ The theme has the current features:
 
 + Light __custom horizontal slider__ without depenencies.
 
-+ __On load page transitions__
++ __On load page transitions.__
 
-+ Custom __SVG__ icons
++ Custom __SVG__ icons.
 
-+ Styles built in __SCSS__
++ Styles built in __SCSS.__
 
-+ __Modern Webpack configuraton__
++ __Modern Webpack configuraton.__
 
 Visit the site [clicking here](http://www.mirjamwalter.com)
 
