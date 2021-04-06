@@ -5,13 +5,13 @@ A custom Wordpress theme deveolped for the artist Mirjam Walter.
 
 ## Theme Features
 
-The plugin creates an __Admin page__ and three custom post types:
-
-+ Styles built with __SCSS__
+The theme has the current features:
 
 + Light __custom horizontal slider__ without depenencies.
 
 + __On load page transitions__
+
++ Styles built in __SCSS__
 
 + __Modern Webpack configuraton__
 
