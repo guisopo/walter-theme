@@ -11,6 +11,8 @@ The theme has the current features:
 
 + __On load page transitions__
 
++ Custom __SVG__ icons
+
 + Styles built in __SCSS__
 
 + __Modern Webpack configuraton__
