@@ -1,5 +1,5 @@
 # Walter Wordpress Theme 👩🏼‍🎤
-A custom Wordpress theme deveolped for the artist Mirjam Walter.
+A responsive custom Wordpress theme developed for the artist Mirjam Walter.
 
 ![alt text](https://raw.githubusercontent.com/guisopo/walter-theme/master/screenshot.png "Theme screenshot")
 
